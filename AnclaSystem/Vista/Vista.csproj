@@ -37,6 +37,24 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,33 +68,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCaja.cs">
+    <Compile Include="GestionDeInventario\frmAgregarIngediente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCaja.Designer.cs">
+    <Compile Include="GestionDeInventario\frmAgregarIngediente.Designer.cs">
+      <DependentUpon>frmAgregarIngediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorteDeCaja\frmCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorteDeCaja\frmCaja.Designer.cs">
       <DependentUpon>frmCaja.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInicioSesion.cs">
+    <Compile Include="GestionDeInventario\frmCambiarStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInicioSesion.Designer.cs">
+    <Compile Include="GestionDeInventario\frmCambiarStock.Designer.cs">
+      <DependentUpon>frmCambiarStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeInventario\frmInventorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeInventario\frmInventorio.Designer.cs">
+      <DependentUpon>frmInventorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.Designer.cs">
+      <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeUsuarios\frmModificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeUsuarios\frmModificarUsuario.Designer.cs">
+      <DependentUpon>frmModificarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncioDeSesion\frmInicioSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IncioDeSesion\frmInicioSesion.Designer.cs">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVenta.cs">
+    <Compile Include="GestionDeProveedores\frmModificarProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVenta.Designer.cs">
+    <Compile Include="GestionDeProveedores\frmModificarProveedores.Designer.cs">
+      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeProveedores\frmDirectorioProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeProveedores\frmDirectorioProveedores.Designer.cs">
+      <DependentUpon>frmDirectorioProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeVentas\frmVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeVentas\frmVenta.Designer.cs">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCaja.resx">
+    <EmbeddedResource Include="GestionDeInventario\frmAgregarIngediente.resx">
+      <DependentUpon>frmAgregarIngediente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorteDeCaja\frmCaja.resx">
       <DependentUpon>frmCaja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInicioSesion.resx">
+    <EmbeddedResource Include="GestionDeInventario\frmCambiarStock.resx">
+      <DependentUpon>frmCambiarStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeInventario\frmInventorio.resx">
+      <DependentUpon>frmInventorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeUsuarios\frmDirectorioUsuarios.resx">
+      <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeUsuarios\frmModificarUsuario.resx">
+      <DependentUpon>frmModificarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncioDeSesion\frmInicioSesion.resx">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVenta.resx">
+    <EmbeddedResource Include="GestionDeProveedores\frmModificarProveedores.resx">
+      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeProveedores\frmDirectorioProveedores.resx">
+      <DependentUpon>frmDirectorioProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeVentas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -89,6 +170,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="CorteDeCaja\rCorteCaja.rdlc" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,5 +185,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{95de1d23-4023-4154-a0f4-99f1f05efca7}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modelo\Modelo.csproj">
+      <Project>{c03e0414-b4c2-40b0-a68e-6505006bfd64}</Project>
+      <Name>Modelo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
