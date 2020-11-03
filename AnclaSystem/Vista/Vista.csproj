@@ -92,6 +92,18 @@
     <Compile Include="GestionDeInventario\frmInventorio.Designer.cs">
       <DependentUpon>frmInventorio.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionDeProducto\frmDetalleProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeProducto\frmDetalleProducto.Designer.cs">
+      <DependentUpon>frmDetalleProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeProducto\frmProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeProducto\frmProducto.Designer.cs">
+      <DependentUpon>frmProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeInventario\frmInventorio.resx">
       <DependentUpon>frmInventorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeProducto\frmDetalleProducto.resx">
+      <DependentUpon>frmDetalleProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeProducto\frmProducto.resx">
+      <DependentUpon>frmProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeUsuarios\frmDirectorioUsuarios.resx">
       <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>
