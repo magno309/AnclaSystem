@@ -98,11 +98,11 @@
     <Compile Include="GestionDeProducto\frmDetalleProducto.Designer.cs">
       <DependentUpon>frmDetalleProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionDeProducto\frmProducto.cs">
+    <Compile Include="GestionDeProducto\frmCatalogoProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionDeProducto\frmProducto.Designer.cs">
-      <DependentUpon>frmProducto.cs</DependentUpon>
+    <Compile Include="GestionDeProducto\frmCatalogoProducto.Designer.cs">
+      <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.cs">
       <SubType>Form</SubType>
@@ -146,6 +146,12 @@
     <Compile Include="GestionDeVentas\frmVenta.Designer.cs">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuPrincipal\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GestionDeInventario\frmAgregarIngediente.resx">
@@ -163,8 +169,8 @@
     <EmbeddedResource Include="GestionDeProducto\frmDetalleProducto.resx">
       <DependentUpon>frmDetalleProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionDeProducto\frmProducto.resx">
-      <DependentUpon>frmProducto.cs</DependentUpon>
+    <EmbeddedResource Include="GestionDeProducto\frmCatalogoProducto.resx">
+      <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeUsuarios\frmDirectorioUsuarios.resx">
       <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeVentas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
