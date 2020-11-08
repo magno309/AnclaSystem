@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Vista.GestionDeProducto
 {
-    public partial class frmProducto : Form
+    public partial class frmCatalogoProducto : Form
     {
-        public frmProducto()
+        public frmCatalogoProducto()
         {
             InitializeComponent();
         }
