@@ -116,6 +116,12 @@
     <Compile Include="GestionDeUsuarios\frmModificarUsuario.Designer.cs">
       <DependentUpon>frmModificarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionDeVentas\frmListaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeVentas\frmListaVentas.Designer.cs">
+      <DependentUpon>frmListaVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="IncioDeSesion\frmInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeUsuarios\frmModificarUsuario.resx">
       <DependentUpon>frmModificarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeVentas\frmListaVentas.resx">
+      <DependentUpon>frmListaVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IncioDeSesion\frmInicioSesion.resx">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
