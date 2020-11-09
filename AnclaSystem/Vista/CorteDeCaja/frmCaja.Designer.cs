@@ -97,6 +97,7 @@
             this.btnAbrirCaja.TabIndex = 6;
             this.btnAbrirCaja.Text = "Abrir/Cerrar caja";
             this.btnAbrirCaja.UseVisualStyleBackColor = true;
+            this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
             // 
             // frmCaja
             // 
