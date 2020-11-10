@@ -35,7 +35,7 @@ namespace Modelo
             connection = new MySqlConnection(connectionString);
         }
 
-        public bool OpenConnection()
+        private bool OpenConnection()
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Modelo
         }
 
         //Close connection
-        public bool CloseConnection()
+        private bool CloseConnection()
         {
             try
             {
@@ -74,6 +74,19 @@ namespace Modelo
             catch (MySqlException ex)
             {
                 //MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public bool ProbarConexion()
+        {
+            if (OpenConnection())
+            {
+                CloseConnection();
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }
