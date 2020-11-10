@@ -18,12 +18,9 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e) {
-            String usr = txtUsuario.Text;
-            String pwd = txtContrasenia.Text;
-
-            //Buscar en la base de datos el registro de ese usuario
-
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
