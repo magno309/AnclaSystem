@@ -23,7 +23,7 @@ namespace Modelo
 
         private void Inicializar()
         {
-            server = "25.89.125.13"; //Cambiar esto para probar
+            server = "25.89.125.13";
             port = "8457";
             database = "ANCLA";
             uid = "remoto";
@@ -92,6 +92,25 @@ namespace Modelo
             {
                 return false;
             }
+        }
+
+        public List<List<object>> ejecutarConsulta(string query) {
+            List<List<object>> lista = new List<List<object>>();
+            if (this.OpenConnection()) {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                int index = 0;
+                while (dataReader.Read()) {
+                    lista.Add(new List<object>());
+                    for (int i = 0; i < dataReader.FieldCount; i++) {
+                        lista[index].Add(dataReader[ dataReader.GetName(i) ]);
+                    }
+                    index++;
+                }
+                dataReader.Close();
+                this.CloseConnection();
+            }
+            return lista;
         }
     }
 }
