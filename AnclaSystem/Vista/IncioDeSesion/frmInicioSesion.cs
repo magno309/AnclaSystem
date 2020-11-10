@@ -23,7 +23,7 @@ namespace Vista
             String pwd = txtContrasenia.Text;
 
             //Buscar en la base de datos el registro de ese usuario
-            
+
         }
     }
 }
