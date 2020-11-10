@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblFechaHora = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtEfectivo = new System.Windows.Forms.TextBox();
             this.btnAbrirCaja = new System.Windows.Forms.Button();
+            this.errorProviderEfectivo = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEfectivo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,23 +67,23 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Efectivo:";
             // 
+            // lblFechaHora
+            // 
+            this.lblFechaHora.AutoSize = true;
+            this.lblFechaHora.Location = new System.Drawing.Point(105, 9);
+            this.lblFechaHora.Name = "lblFechaHora";
+            this.lblFechaHora.Size = new System.Drawing.Size(193, 20);
+            this.lblFechaHora.TabIndex = 4;
+            this.lblFechaHora.Text = "[Fecha actual del sistema]";
+            // 
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(105, 9);
+            this.lblFecha.Location = new System.Drawing.Point(12, 9);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(193, 20);
-            this.lblFecha.TabIndex = 4;
-            this.lblFecha.Text = "[Fecha actual del sistema]";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 20);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Fecha:";
+            this.lblFecha.Size = new System.Drawing.Size(58, 20);
+            this.lblFecha.TabIndex = 3;
+            this.lblFecha.Text = "Fecha:";
             // 
             // txtEfectivo
             // 
@@ -98,6 +101,11 @@
             this.btnAbrirCaja.TabIndex = 6;
             this.btnAbrirCaja.Text = "Abrir/Cerrar caja";
             this.btnAbrirCaja.UseVisualStyleBackColor = true;
+            this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
+            // 
+            // errorProviderEfectivo
+            // 
+            this.errorProviderEfectivo.ContainerControl = this;
             // 
             // frmCaja
             // 
@@ -106,8 +114,8 @@
             this.ClientSize = new System.Drawing.Size(339, 151);
             this.Controls.Add(this.btnAbrirCaja);
             this.Controls.Add(this.txtEfectivo);
+            this.Controls.Add(this.lblFechaHora);
             this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.label1);
@@ -117,6 +125,7 @@
             this.Name = "frmCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Apertura/Cierre de caja";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEfectivo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,9 +136,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFechaHora;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEfectivo;
         private System.Windows.Forms.Button btnAbrirCaja;
+        private System.Windows.Forms.ErrorProvider errorProviderEfectivo;
     }
 }
