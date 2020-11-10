@@ -22,7 +22,8 @@ namespace Vista
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             Conexion cn = new Conexion();
-            MessageBox.Show(cn.ProbarConexion().ToString());
+            //MessageBox.Show(cn.ProbarConexion().ToString());
+            List<List<object>> lista = cn.ejecutarConsulta("select * from Tabla;");
         }
     }
 }
