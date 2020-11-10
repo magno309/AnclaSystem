@@ -1,5 +1,5 @@
-create database AnclaSystem;
-use AnclaSystem;
+create database ANCLA;
+use ANCLA;
 
 CREATE TABLE PRODUCTOS(
 ID INT AUTO_INCREMENT PRIMARY KEY,

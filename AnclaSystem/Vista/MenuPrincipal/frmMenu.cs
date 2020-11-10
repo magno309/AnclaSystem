@@ -8,13 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Vista.GestionDeProducto
+namespace Vista.MenuPrincipal
 {
-    public partial class frmProducto : Form
+    public partial class frmMenu : Form
     {
-        public frmProducto()
+        public frmMenu()
         {
             InitializeComponent();
+        }
+
+        private void btnAgregarVenta_Click(object sender, EventArgs e)
+        {
+            //Si ya se abrió caja
+            frmVenta frm = new frmVenta();
+            frm.Show();
         }
     }
 }
