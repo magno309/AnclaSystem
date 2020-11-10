@@ -19,7 +19,7 @@ namespace Vista
         {
             InitializeComponent();
             //posible solución para guardar fecha
-            fechaIncio = Datos.Properties.Settings.Default.CajaFechaInicio;
+            //fechaIncio = Datos.Properties.Settings.Default.CajaFechaInicio;
             if (fechaIncio.Equals(""))
             {
                 fechaIncio = DateTime.Now.ToString();

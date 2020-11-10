@@ -15,6 +15,11 @@ namespace Modelo {
         public bool esAdmin { get; set; }
         public bool esActivo { get; set; }
 
+        public Usuario()
+        {
+
+        }
+
         public Usuario(int id, string nombre, string nombre_usuario, string contrasenia, bool esAdmin, bool esActivo) {
             this.id = id;
             this.nombre = nombre;

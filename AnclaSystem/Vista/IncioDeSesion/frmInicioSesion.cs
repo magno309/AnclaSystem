@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Modelo;
 
 namespace Vista
@@ -18,12 +19,10 @@ namespace Vista
             InitializeComponent();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e) {
-            String usr = txtUsuario.Text;
-            String pwd = txtContrasenia.Text;
-
-            //Buscar en la base de datos el registro de ese usuario
-            
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Conexion cn = new Conexion();
+            MessageBox.Show(cn.ProbarConexion().ToString());
         }
     }
 }
