@@ -80,9 +80,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(80, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.Size = new System.Drawing.Size(27, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "$[Cambio]";
+            this.label2.Text = "$0";
             // 
             // label4
             // 
@@ -114,9 +114,9 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(80, 22);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(61, 20);
+            this.lblTotal.Size = new System.Drawing.Size(27, 20);
             this.lblTotal.TabIndex = 1;
-            this.lblTotal.Text = "$[Total]";
+            this.lblTotal.Text = "$0";
             // 
             // label1
             // 
@@ -248,10 +248,9 @@
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(105, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(89, 22);
             this.toolStripButton1.Text = "Registrar venta";
             // 
             // frmVenta

@@ -23,7 +23,8 @@ namespace Vista
         daoVentas vent;
 
         int IDseleccionado; //id del producto doble al dar clic
-        int cantidad; //cantidad de productos
+        int cantidad=0; //cantidad de productos
+        double total=0; //total de la venta
         public frmVenta()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace Vista
         {
             IDseleccionado = dgvProductos.CurrentCell.RowIndex;
 
-            int cantidad = 0;
             while (!int.TryParse(Interaction.InputBox("Cantidad", "Cantidad", "1"), out cantidad) || cantidad < 1)
             {
                 MessageBox.Show("Entrada invalida");
@@ -54,12 +54,15 @@ namespace Vista
             {
                 DetalleVentas detalle = new DetalleVentas();
                 detalle.ID_PROD = listaProductos[IDseleccionado].ID;
-                detalle.PRECIO_VENTA= listaProductos[IDseleccionado].precio;
+                detalle.PRECIO_VENTA = listaProductos[IDseleccionado].precio;
                 detalle.CANTIDAD = cantidad;
                 detalle.SUBTOTAL = cantidad * listaProductos[IDseleccionado].precio;
                 listaDetalles.Add(detalle);
                 dgvDetalle.DataSource = null;
                 dgvDetalle.DataSource = listaDetalles;
+
+                total += detalle.SUBTOTAL;
+                lblTotal.Text = "$" + total;
             }
         }
 
