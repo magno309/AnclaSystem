@@ -7,7 +7,7 @@ namespace Datos
     public class Conexion
     {
         //Variable que administra la conexion a la base de datos 
-        static MySqlConnection conexion;
+        public static MySqlConnection conexion;
 
         //Establece la conexión a la BD de acuerdo a un String que indica el servidor y el nombre de esta
         //Además de el nombre y la contraseña del usuario y el puerto.

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelo;
+using Datos;
 
 namespace Vista
 {
@@ -15,6 +17,11 @@ namespace Vista
         public frmVenta()
         {
             InitializeComponent();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
