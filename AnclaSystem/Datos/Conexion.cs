@@ -18,7 +18,6 @@ namespace Datos
                 if (conexion == null || conexion.State != ConnectionState.Open)
                 {
                     conexion = new MySqlConnection();
-                    //conexion.ConnectionString = "Server=localhost;Database=world;uid=root;pwd=root";
                     String server = "25.89.125.13";
                     String database = "ANCLA";
                     String uid = "remoto";
@@ -39,7 +38,6 @@ namespace Datos
             {
                 desconectar();
             }
-
         }
 
         //Metodo que asigna los datos de la BD a un datatable usando un MySQLDataAdapter como
@@ -62,16 +60,13 @@ namespace Datos
         //ExecuteScalar() o ExecuteNonQuery() a la variable valor. 
         //ExecuteScalar() retorna un object y recupera la primera columna de la primera fila.
         //ExecuteNonQuery() se usa para ejecutar instrucciones de SQL que no devolverán un valor.
-        public static int ejecutarSentencia(MySqlCommand sentencia, bool esInsertar)
+        public static int ejecutarSentencia(MySqlCommand sentencia)
         {
             int valor = 0;
             if (conectar())
             {
                 sentencia.Connection = conexion;
-                if (esInsertar)
-                    valor = int.Parse(sentencia.ExecuteScalar().ToString());
-                else
-                    valor = sentencia.ExecuteNonQuery();
+                valor = sentencia.ExecuteNonQuery();
             }
             return valor;
         }
