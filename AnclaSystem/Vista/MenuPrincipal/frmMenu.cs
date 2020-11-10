@@ -16,5 +16,12 @@ namespace Vista.MenuPrincipal
         {
             InitializeComponent();
         }
+
+        private void btnAgregarVenta_Click(object sender, EventArgs e)
+        {
+            //Si ya se abrió caja
+            frmVenta frm = new frmVenta();
+            frm.Show();
+        }
     }
 }
