@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelo;
 
 namespace Vista
 {
@@ -15,6 +16,13 @@ namespace Vista
         public frmInicioSesion()
         {
             InitializeComponent();
+        }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Conexion cn = new Conexion();
+            MessageBox.Show(cn.OpenConnection().ToString());
+            cn.CloseConnection();
         }
     }
 }
