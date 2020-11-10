@@ -44,6 +44,9 @@ namespace Modelo
             }
             catch (MySqlException ex)
             {
+
+                Console.WriteLine(ex.Message);
+
                 //When handling errors, you can your application's response based 
                 //on the error number.
                 //The two most common error numbers when connecting are as follows:
