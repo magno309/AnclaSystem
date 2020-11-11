@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datos
+namespace Modelo
 {
+    /// <summary>
+    /// POJO INVENTARIO
+    /// </summary>
     public class Inventario
     {
         public int ID { get; set; }
