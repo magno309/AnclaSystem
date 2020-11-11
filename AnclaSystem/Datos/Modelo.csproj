@@ -50,6 +50,7 @@
     <Compile Include="Inventario.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="VentaAuxiliar.cs" />
     <Compile Include="Ventas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
