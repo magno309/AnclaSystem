@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,8 @@ namespace Vista
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-
+            Conexion cn = new Conexion();
+            cn.ProbarConexion();
         }
     }
 }

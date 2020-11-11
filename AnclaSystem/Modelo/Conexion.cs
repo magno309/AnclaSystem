@@ -29,8 +29,8 @@ namespace Modelo
             uid = "remoto";
             password = "remoto1";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "server=" + server + ";" + "port=" + port + ";" + "database=" +
+            database + ";" + "uid=" + uid + ";" + "pwd=" + password + ";" + "Allow User Variables=True;";
 
             connection = new MySqlConnection(connectionString);
         }
@@ -44,14 +44,7 @@ namespace Modelo
             }
             catch (MySqlException ex)
             {
-
                 Console.WriteLine(ex.Message);
-
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
                 switch (ex.Number)
                 {
                     case 0:
