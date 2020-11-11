@@ -85,10 +85,25 @@ namespace Vista
                 detalle.PRECIO_VENTA = listaProductos[IDseleccionado].precio;
                 detalle.CANTIDAD = cantidad;
                 detalle.SUBTOTAL = cantidad * listaProductos[IDseleccionado].precio;
-                listaDetalles.Add(detalle);
+                bool existe = false;
+                foreach(DetalleVentas x in listaDetalles)
+                {
+                    if (x.ID_PROD==detalle.ID_PROD)
+                    {
+                        existe = true;
+                        x.CANTIDAD += detalle.CANTIDAD;
+                        break;
+                    }
+                }
+
+                if (!existe)
+                {
+                    listaDetalles.Add(detalle);
+                }
+
                 dgvDetalle.DataSource = null;
                 dgvDetalle.DataSource = listaDetalles;
-
+                
                 //ocultar IDS
                 dgvDetalle.Columns[0].Visible = false;
                 dgvDetalle.Columns[1].Visible = false;
