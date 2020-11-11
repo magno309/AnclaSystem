@@ -23,5 +23,11 @@ namespace Vista.MenuPrincipal
             frmVenta frm = new frmVenta();
             frm.Show();
         }
+
+        private void abrirCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+        }
     }
 }
