@@ -7,7 +7,7 @@ using Modelo;
 
 using System.Data;
 
-namespace Datos {
+namespace Modelo{
     public class daoUsuario {
         //Conexión con la BD
 

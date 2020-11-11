@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Modelo;
 using MySql.Data.MySqlClient;
 
-namespace Datos
+namespace Modelo
 {
     /// <summary>
     /// CLASE ACCESO A DATOS PRODUCTO
