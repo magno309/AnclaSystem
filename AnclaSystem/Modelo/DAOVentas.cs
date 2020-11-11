@@ -8,83 +8,127 @@ using MySql.Data.MySqlClient;
 
 namespace Datos
 {
+    /// <summary>
+    /// Clase de acceso a datos para la entidad Venta.
+    /// </summary>
     public class daoVentas
     {
+        /// <summary>
+        /// Metodo que registra una venta en la base de datos. Sus detalles y descuenta del inventario los productos vendidos.
+        /// </summary>
+        /// <param name="nuevaVenta">pojo que contiene los datos de venta</param>
+        /// <param name="detalleVenta">lista con los detalles de venta</param>
+        /// <returns></returns>
         public bool agregarVenta(Ventas nuevaVenta, List<DetalleVentas> detalleVenta)
         {
-            MySqlConnection conexion = new MySqlConnection();
-            MySqlTransaction trans = conexion.BeginTransaction();
+            /// CREAR LA CONEXIÓN, CONFIGURAR Y ABRIRLA
+            MySqlConnection cn = new MySqlConnection();
+
+            cn.ConnectionString = cn.ConnectionString = "server=localhost; database=ANCLA; user=root; pwd=root";
+            cn.Open();
+
+            ///INICIAR TRANSACCION
+            MySqlTransaction trans = cn.BeginTransaction();
+
             try
             {
-                String server = "25.89.125.13";
-                String database = "ANCLA";
-                String uid = "remoto";
-                String password = "remoto1";
-                String port = "8457";
-                String connectionString = "SERVER=" + server + "; PORT =" + port + ";" + "DATABASE="
-                    + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-                conexion.Open();
-                string strSQL = "insert into VENTAS values (ID, @TOTAL, @FECHA)";
-                MySqlCommand comando = new MySqlCommand(strSQL, conexion);
+                ///INSERTAR VENTA A LA BASE DE DATOS
+                string strSQL = "insert into VENTAS(TOTAL, FECHA, ID_CAJERO) values (@TOTAL, @FECHA, @ID_CAJERO)";
+                MySqlCommand comando = new MySqlCommand(strSQL, cn);
                 comando.Parameters.AddWithValue("TOTAL", nuevaVenta.TOTAL);
                 comando.Parameters.AddWithValue("FECHA", nuevaVenta.FECHA);
+                comando.Parameters.AddWithValue("ID_CAJERO", nuevaVenta.ID_CAJERO);
                 comando.ExecuteNonQuery();
                 comando.Dispose();
 
+                ///OBTENER EL ID DE LA VENTA RECIENTEMENTE REGISTRADA
                 string strSQL2 = "select MAX(ID) from VENTAS";
-                MySqlCommand comando2 = new MySqlCommand(strSQL2, conexion);
+                MySqlCommand comando2 = new MySqlCommand(strSQL2, cn);
                 MySqlDataReader dr = comando2.ExecuteReader();
-                int indice = dr.GetInt32("MAX(ID)");
-                comando2.Dispose();
 
-                for (int i = 0; i < detalleVenta.Count; i++)
+                if (dr.Read())
                 {
-                    string strSQL1 = "insert into DETALLE_VENTAS values (@ID_PROD, @ID_VENT, @CANTIDAD, @PRECIO_VENTA)";
-                    MySqlCommand comando1 = new MySqlCommand(strSQL1, conexion);
-                    comando1.Parameters.AddWithValue("ID_PROD", detalleVenta[i].ID_PROD);
-                    comando1.Parameters.AddWithValue("ID_VENT", indice);
-                    comando1.Parameters.AddWithValue("CANTIDAD", detalleVenta[i].CANTIDAD);
-                    comando1.Parameters.AddWithValue("PRECIO_VENTA", detalleVenta[i].PRECIO_VENTA);
-                    comando1.ExecuteNonQuery();
-                    comando1.Dispose();
+                    int indice = dr.GetInt32("MAX(ID)");
+                    comando2.Dispose();
+                    dr.Dispose();
+
+                    ///INSERTAR LOS DETALLES DE VENTA CON EL ID OBTENIDO CON ANTERIORIDAD
+                    for (int i = 0; i < detalleVenta.Count; i++)
+                    {
+                        string strSQL1 = "insert into DETALLE_VENTAS values (@ID_PROD, @ID_VENT, @CANTIDAD, @PRECIO_VENTA)";
+                        MySqlCommand comando1 = new MySqlCommand(strSQL1, cn);
+                        comando1.Parameters.AddWithValue("ID_PROD", detalleVenta[i].ID_PROD);
+                        comando1.Parameters.AddWithValue("ID_VENT", indice);
+                        comando1.Parameters.AddWithValue("CANTIDAD", detalleVenta[i].CANTIDAD);
+                        comando1.Parameters.AddWithValue("PRECIO_VENTA", detalleVenta[i].PRECIO_VENTA);
+                        comando1.ExecuteNonQuery();
+                        comando1.Dispose();
+                    }
                 }
 
-                List<Inventario> ingredientes = new List<Inventario>();
+                ///MODIFICAR EL INVENTARIO, DESCONTAR LOS INGREDIENTES DE LOS PRODUCTOS VENDIDOS
+                List<List<daoVentaAuxiliar>> listas = new List<List<daoVentaAuxiliar>>(); //lista de listas porque no me deja tener dos datareaders
+                MySqlDataReader dr1 = null;
+
                 foreach (DetalleVentas prod in detalleVenta)
                 {
-                    string strSQL3 = "SELECT DP.ID_INV, DP.CANT, I.STOCK FROM DETALLE_PRODUCTOS AS DP JOIN PRODUCTOS AS P ON" +
-                        " DP.ID_PROD = P.ID JOIN INVENTARIO AS I ON DP.ID_INV = I.ID WHERE DP.ID_PROD = @ID_PROD";
-                    MySqlCommand comando3 = new MySqlCommand(strSQL3, conexion);
-                    MySqlDataReader dr1 = comando3.ExecuteReader();
+                    ///OBTENER EL ID DEL INVENARIO, LA CANTIDAD DE INGREDIENTES Y EL STOCK ACTUAL DE CADA PRODUCTO VENDIDO
+                    List<daoVentaAuxiliar> ingredientes = new List<daoVentaAuxiliar>();
+                    string strSQL3 = "SELECT DP.ID_INV, DP.CANTIDAD, I.STOCK FROM DETALLE_PRODUCTOS AS DP JOIN PRODUCTOS AS P ON" +
+                        " DP.ID_PROD = P.ID JOIN INVENTARIO AS I ON DP.ID_INV = I.ID WHERE DP.ID_PROD = @ID_PRODU";
+                    MySqlCommand comando3 = new MySqlCommand(strSQL3, cn);
+                    comando3.Parameters.AddWithValue("@ID_PRODU", prod.ID_PROD);
+                    dr1 = comando3.ExecuteReader();
 
-                    while (dr.Read())
+                    while (dr1.Read())
                     {
-                        int ID_inv = dr.GetInt32("ID_INV");
-                        int cantidad = dr.GetInt32("CANT");
-                        int stock_actual = dr.GetInt32("STOCK");
+                        ingredientes.Add(new daoVentaAuxiliar(prod.CANTIDAD, dr1.GetInt32("ID_INV"), dr1.GetInt32("CANTIDAD"), dr1.GetInt32("STOCK")));
+                    }
 
-                        string strSQL4 = "UPDATE TABLE INVENTARIO SET STOCK = @DESC WHERE ID = @ID_INV";
-                        MySqlCommand comando4 = new MySqlCommand(strSQL4, conexion);
-                        comando4.Parameters.AddWithValue("DESC", stock_actual - (cantidad * prod.CANTIDAD));
-                        comando4.Parameters.AddWithValue("ID_INV", ID_inv);
+                    ///GUARDAR CADA DATO POR CADA PRODUCTO
+                    listas.Add(ingredientes);
+                    dr1.Dispose();
+                }
+
+                ///MODIFICAR EL INVENTARIO
+                int nuevo_inv = 0;
+                foreach (List<daoVentaAuxiliar> lista in listas)
+                {
+                    foreach (daoVentaAuxiliar aux in lista)
+                    {
+                        string strSQL4 = "UPDATE INVENTARIO SET STOCK = @DESC WHERE ID = @ID_INV";
+                        MySqlCommand comando4 = new MySqlCommand(strSQL4, cn);
+
+                        ///CALCULAR EL NUEVO STOCK
+                        nuevo_inv = aux.stock_actual - (aux.cantidad * aux.cant);
+                        if (nuevo_inv < 0)
+                        {
+                            nuevo_inv = 0;
+                        }
+
+                        comando4.Parameters.AddWithValue("DESC", nuevo_inv);
+                        comando4.Parameters.AddWithValue("ID_INV", aux.ID_inv);
                         comando4.ExecuteNonQuery();
                         comando4.Dispose();
                     }
                 }
 
+                ///TERMINAR TRANSACCION
                 trans.Commit();
-                conexion.Close();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                ///SI HAY ERROR DESHACER LO QUE SE LLEVARA EN LA TRANSACCION Y LANZAR EXCEPCION
                 trans.Rollback();
-                conexion.Close();
-                return false;
+                throw ex;
+            }
+            finally
+            {
+                ///CERRAR TODO
+                cn.Close();
+                cn.Dispose();
             }
         }
-
     }
 }
-
-

@@ -11,5 +11,7 @@ namespace Modelo
         public int ID { get; set; }
         public double TOTAL { get; set; }
         public String FECHA{ get; set; }
+
+        public int ID_CAJERO { get; set; }
     }
 }

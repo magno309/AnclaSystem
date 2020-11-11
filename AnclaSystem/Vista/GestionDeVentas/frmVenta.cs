@@ -17,29 +17,35 @@ namespace Vista
 {
     public partial class frmVenta : Form
     {
-        List<Productos> listaProductos;
-        List<DetalleVentas> listaDetalles;
-        daoProducto prod;
-        daoVentas vent;
+        List<Productos> listaProductos = new List<Productos>();
+        List<DetalleVentas> listaDetalles = new List<DetalleVentas>();
+        daoProducto prod = new daoProducto();
+        daoVentas venta = new daoVentas();
 
         int IDseleccionado; //id del producto doble al dar clic
-        int cantidad=0; //cantidad de productos
-        double total=0; //total de la venta
+        int cantidad = 0; //cantidad de productos
+        double total = 0; //total de la venta
+        int cajeroID = 1; //cambiar cuando este el login
         public frmVenta()
         {
             InitializeComponent();
-            listaProductos = new List<Productos>();
-            listaDetalles = new List<DetalleVentas>();
         }
 
         private void frmVenta_Load(object sender, EventArgs e)
         {
             //llenar tabla de productos
-            listaProductos = prod.getProductosNoDescontinuados();
-            dgvProductos.DataSource = listaProductos;
+            try
+            {
+                listaProductos = prod.getProductosNoDescontinuados();
+                dgvProductos.DataSource = listaProductos;
 
-            //ocultar ID
-            dgvProductos.Columns[0].Visible = false;
+                //ocultar ID
+                dgvProductos.Columns[0].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dgvProductos_DoubleClick(object sender, EventArgs e)
@@ -68,15 +74,32 @@ namespace Vista
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Ventas nuevaVenta = new Ventas();
-            double suma = 0;
-            foreach(DetalleVentas x in listaDetalles)
+            registrarVenta();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            registrarVenta();
+        }
+
+        private void registrarVenta()
+        {
+            try
             {
-                suma += x.SUBTOTAL;
+                Ventas nuevaVenta = new Ventas();
+                nuevaVenta.TOTAL = total;
+                nuevaVenta.FECHA = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                nuevaVenta.ID_CAJERO = cajeroID;
+                if (venta.agregarVenta(nuevaVenta, listaDetalles))
+                {
+                    MessageBox.Show("Venta registrada con exito");
+                }
             }
-            nuevaVenta.TOTAL = suma;
-            nuevaVenta.FECHA = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-            vent.agregarVenta(nuevaVenta, listaDetalles);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

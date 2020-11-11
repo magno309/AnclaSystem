@@ -16,13 +16,22 @@ namespace Datos
         /// <returns>Lista de productos que no estan descontinuados.</returns>
         public List<Productos> getProductosNoDescontinuados()
         {
-                ///CREAR CONEXION, MODIFICARLA, USARLA
-                List<Productos> productos = new List<Productos>();
-                MySqlConnection cn = new MySqlConnection();
+            ///CREAR CONEXION, MODIFICARLA, USARLA
+            String server = "localhost";
+            String port = "8457";
+            String database = "ANCLA";
+            String uid = "root";
+            String password = "root";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            List<Productos> productos = new List<Productos>();
+            MySqlConnection cn = new MySqlConnection(connectionString);
+
                 try
-                {
-                    cn.ConnectionString = "SERVER = 25.89.125.13; PORT = 8457; DATABASE = ANCLA; UID = remoto; PASSWORD = remoto1;";
-                    cn.Open();
+                {                              
+                cn.Open();
                     ///EJECUTAR COMANDO
                     string strSQL = "SELECT * FROM PRODUCTOS WHERE DESCONTINUADO = FALSE";
                     MySqlCommand comando = new MySqlCommand(strSQL, cn);

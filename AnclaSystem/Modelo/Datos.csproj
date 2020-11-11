@@ -87,6 +87,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="daoProducto.cs" />
     <Compile Include="daoUsuario.cs" />
+    <Compile Include="daoVentaAuxiliar.cs" />
     <Compile Include="daoVentas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
