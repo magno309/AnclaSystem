@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Modelo\Modelo.csproj", "{C03E0414-B4C2-40B0-A68E-6505006BFD64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{95DE1D23-4023-4154-A0F4-99F1F05EFCA7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C03E0414-B4C2-40B0-A68E-6505006BFD64} = {C03E0414-B4C2-40B0-A68E-6505006BFD64}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

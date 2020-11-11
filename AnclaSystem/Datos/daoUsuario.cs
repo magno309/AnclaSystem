@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Datos;
+using Modelo;
 using System.Data;
 
-namespace Modelo{
-    public class daoUsuario {
+namespace Datos
+{
+    public class daoUsuario
+    {
         //Conexión con la BD
 
         /// <summary>
@@ -15,7 +17,8 @@ namespace Modelo{
         /// </summary>
         /// <param name="obj"> Objeto de tipo Usuario. No es necesario que contenga un ID </param>
         /// <returns>Verdadero o falso de acuerdo a si se logro o no insertar el objeto</returns>    
-        public bool agregar(Usuario obj) {
+        public bool agregar(Usuario obj)
+        {
             return false;
         }
 
@@ -26,7 +29,8 @@ namespace Modelo{
         /// </summary>
         /// <param name="obj">Objeto de tipo Usuario. Es necesario que contenga un valor en el atributo 'id'</param>
         /// <returns>Verdadero o falso de acuerdo a si se logro o no actualizar el objeto</returns>
-        public bool editar(Usuario obj) {
+        public bool editar(Usuario obj)
+        {
             return false;
         }
 
@@ -36,7 +40,8 @@ namespace Modelo{
         /// </summary>
         /// <param name="id">Identificador del registro Usuario a eliminar</param>
         /// <returns>Verdadero o falso de acuerdo a si se logro o no modificar el objeto</returns>
-        public bool eliminar(int id) {
+        public bool eliminar(int id)
+        {
             return false;
         }
 
@@ -45,7 +50,8 @@ namespace Modelo{
         /// </summary>
         /// <param name="id">Identificador del registro Usuario a buscar</param>
         /// <returns>Objeto de tipo Usuario con el resultado de la busqueda. Estará vacío si no se encuentra.</returns>
-        public Usuario buscarUno(int id) {
+        public Usuario buscarUno(int id)
+        {
             Usuario obj = new Usuario();
 
             return obj;
@@ -56,7 +62,8 @@ namespace Modelo{
         /// </summary>
         /// <param name="nombre_usuario">nombre de usuario del registro Usuario a buscar</param>
         /// <returns>Objeto de tipo Usuario con el resultado de la busqueda. Estará vacío si no se encuentra.</returns>
-        public Usuario buscarUno(String nombre_usuario) {
+        public Usuario buscarUno(String nombre_usuario)
+        {
             Usuario obj = new Usuario();
 
             return obj;
@@ -66,7 +73,8 @@ namespace Modelo{
         /// Consulta el conjunto de registros de usuaruios que se encuntran actualmente en la base de datos.
         /// </summary>
         /// <returns>Retorna una lista de usuarios (List<Usuario>) con el contenido encontrado.</returns>
-        public List<Usuario> buscarTodos() {
+        public List<Usuario> buscarTodos()
+        {
             List<Usuario> lista = new List<Usuario>();
 
             return lista;
