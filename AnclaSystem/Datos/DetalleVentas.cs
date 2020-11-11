@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
+    /// <summary>
+    /// POJO detalle de ventas
+    /// </summary>
     public class DetalleVentas
     {
         public int ID_PROD { get; set; }

@@ -13,6 +13,18 @@ namespace Datos
     /// </summary>
     public class daoVentas
     {
+
+        /// <summary>
+        /// MODIFICAR CAMPOS PARA LA CONEXION A MYSQL
+        /// </summary>
+        static String server = "localhost";
+        static String port = "8457";
+        static String database = "ANCLA";
+        static String uid = "root";
+        static String password = "root";
+        static string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
         /// <summary>
         /// Metodo que registra una venta en la base de datos. Sus detalles y descuenta del inventario los productos vendidos.
         /// </summary>
@@ -21,10 +33,7 @@ namespace Datos
         /// <returns></returns>
         public bool agregarVenta(Ventas nuevaVenta, List<DetalleVentas> detalleVenta)
         {
-            /// CREAR LA CONEXIÓN, CONFIGURAR Y ABRIRLA
-            MySqlConnection cn = new MySqlConnection();
-
-            cn.ConnectionString = cn.ConnectionString = "server=localhost; database=ANCLA; user=root; pwd=root";
+            MySqlConnection cn = new MySqlConnection(connectionString);
             cn.Open();
 
             ///INICIAR TRANSACCION
@@ -67,13 +76,13 @@ namespace Datos
                 }
 
                 ///MODIFICAR EL INVENTARIO, DESCONTAR LOS INGREDIENTES DE LOS PRODUCTOS VENDIDOS
-                List<List<daoVentaAuxiliar>> listas = new List<List<daoVentaAuxiliar>>(); //lista de listas porque no me deja tener dos datareaders
+                List<List<VentaAuxiliar>> listas = new List<List<VentaAuxiliar>>(); //lista de listas porque no me deja tener dos datareaders
                 MySqlDataReader dr1 = null;
 
                 foreach (DetalleVentas prod in detalleVenta)
                 {
                     ///OBTENER EL ID DEL INVENARIO, LA CANTIDAD DE INGREDIENTES Y EL STOCK ACTUAL DE CADA PRODUCTO VENDIDO
-                    List<daoVentaAuxiliar> ingredientes = new List<daoVentaAuxiliar>();
+                    List<VentaAuxiliar> ingredientes = new List<VentaAuxiliar>();
                     string strSQL3 = "SELECT DP.ID_INV, DP.CANTIDAD, I.STOCK FROM DETALLE_PRODUCTOS AS DP JOIN PRODUCTOS AS P ON" +
                         " DP.ID_PROD = P.ID JOIN INVENTARIO AS I ON DP.ID_INV = I.ID WHERE DP.ID_PROD = @ID_PRODU";
                     MySqlCommand comando3 = new MySqlCommand(strSQL3, cn);
@@ -82,7 +91,7 @@ namespace Datos
 
                     while (dr1.Read())
                     {
-                        ingredientes.Add(new daoVentaAuxiliar(prod.CANTIDAD, dr1.GetInt32("ID_INV"), dr1.GetInt32("CANTIDAD"), dr1.GetInt32("STOCK")));
+                        ingredientes.Add(new VentaAuxiliar(prod.CANTIDAD, dr1.GetInt32("ID_INV"), dr1.GetInt32("CANTIDAD"), dr1.GetInt32("STOCK")));
                     }
 
                     ///GUARDAR CADA DATO POR CADA PRODUCTO
@@ -92,9 +101,9 @@ namespace Datos
 
                 ///MODIFICAR EL INVENTARIO
                 int nuevo_inv = 0;
-                foreach (List<daoVentaAuxiliar> lista in listas)
+                foreach (List<VentaAuxiliar> lista in listas)
                 {
-                    foreach (daoVentaAuxiliar aux in lista)
+                    foreach (VentaAuxiliar aux in lista)
                     {
                         string strSQL4 = "UPDATE INVENTARIO SET STOCK = @DESC WHERE ID = @ID_INV";
                         MySqlCommand comando4 = new MySqlCommand(strSQL4, cn);
@@ -126,6 +135,40 @@ namespace Datos
             finally
             {
                 ///CERRAR TODO
+                cn.Close();
+                cn.Dispose();
+            }
+        }
+
+        public int getMax()
+        {
+            int max = 0;
+            /// CREAR LA CONEXIÓN, CONFIGURAR Y ABRIRLA
+            MySqlConnection cn = new MySqlConnection(connectionString);
+
+            try
+            {
+                cn.Open();
+
+                ///OBTENER EL ID DE LA VENTA RECIENTEMENTE REGISTRADA
+                string strSQL2 = "select MAX(ID) from VENTAS";
+                MySqlCommand comando2 = new MySqlCommand(strSQL2, cn);
+                MySqlDataReader dr = comando2.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    max = dr.GetInt32("MAX(ID)");
+                    comando2.Dispose();
+                }
+                dr.Dispose();
+                return max;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
                 cn.Close();
                 cn.Dispose();
             }

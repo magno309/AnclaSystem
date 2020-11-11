@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
+    /// <summary>
+    /// POJO INVENTARIO
+    /// </summary>
     public class Inventario
     {
         public int ID { get; set; }
