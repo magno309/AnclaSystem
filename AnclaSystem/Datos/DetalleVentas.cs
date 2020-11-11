@@ -10,6 +10,7 @@ namespace Modelo
     {
         public int ID_PROD { get; set; }
         public int ID_VENT { get; set; }
+        public string NOMBRE_AUX { get; set; }
         public int CANTIDAD { get; set; }
         public double PRECIO_VENTA { get; set; }
         public double SUBTOTAL { get; set; }
