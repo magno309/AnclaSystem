@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
-namespace Datos
-{
-    public class Conexion
-    {
+namespace Modelo {
+    public class Conexion {
         private MySqlConnection connection;
         private string server;
         private string port;
@@ -17,21 +15,19 @@ namespace Datos
         private string uid;
         private string password;
 
-        public Conexion()
-        {
+        public Conexion() {
             Inicializar();
         }
 
-        private void Inicializar()
-        {
+        private void Inicializar() {
             server = "localhost";
             port = "8457";
             database = "ANCLA";
             uid = "root";
             password = "root";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";
 
@@ -40,18 +36,21 @@ namespace Datos
             connection = new MySqlConnection(connectionString);
         }
 
-        private bool OpenConnection()
-        {
-            try
-            {
+        private bool OpenConnection() {
+            try {
                 connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
-            {
+            catch (MySqlException ex) {
+
                 Console.WriteLine(ex.Message);
-                switch (ex.Number)
-                {
+
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number) {
 
                     case 0:
                         //MessageBox.Show("Cannot connect to server.  Contact administrator");
@@ -66,46 +65,62 @@ namespace Datos
         }
 
         //Close connection
-        private bool CloseConnection()
-        {
-            try
-            {
+        private bool CloseConnection() {
+            try {
                 connection.Close();
                 return true;
             }
-            catch (MySqlException ex)
-            {
+            catch (MySqlException ex) {
                 //MessageBox.Show(ex.Message);
                 return false;
             }
         }
 
-        public bool ProbarConexion()
-        {
-            if (OpenConnection())
-            {
+        public bool ProbarConexion() {
+            if (OpenConnection()) {
                 CloseConnection();
                 return true;
             }
-            else
-            {
+            else {
                 return false;
             }
         }
 
-        public List<List<object>> ejecutarConsulta(string query)
-        {
+        public List<List<object>> ejecutarConsulta(string query) {
             List<List<object>> lista = new List<List<object>>();
-            if (this.OpenConnection())
-            {
+            if (this.OpenConnection()) {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 int index = 0;
-                while (dataReader.Read())
-                {
+                while (dataReader.Read()) {
                     lista.Add(new List<object>());
-                    for (int i = 0; i < dataReader.FieldCount; i++)
-                    {
+                    for (int i = 0; i < dataReader.FieldCount; i++) {
+                        lista[index].Add(dataReader[dataReader.GetName(i)]);
+                    }
+                    index++;
+                }
+                dataReader.Close();
+                this.CloseConnection();
+            }
+            return lista;
+        }
+
+        /// <summary>
+        /// Sobrecarga del método ejecutarConsulta. Para aquellas consultas que incluyan parametros en el comando.
+        /// Estos serán configurados desde el DAO. y se enviaran mediante el MySqlCommand
+        /// </summary>
+        /// <param name="cmd">Comando de consulta con parametros</param>
+        /// <returns>Una lista de un arreglo de objetos, cada Lista contenida en la Lista principal, contiene los campos de un solo registro.</returns>
+        public List<List<object>> ejecutarConsulta(MySqlCommand cmd /*string query*/) {
+            List<List<object>> lista = new List<List<object>>();
+            if (this.OpenConnection()) {
+                //MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Connection = connection;        // Esta línea sustituye a la de arriba
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                int index = 0;
+                while (dataReader.Read()) {
+                    lista.Add(new List<object>());
+                    for (int i = 0; i < dataReader.FieldCount; i++) {
                         lista[index].Add(dataReader[dataReader.GetName(i)]);
                     }
                     index++;
