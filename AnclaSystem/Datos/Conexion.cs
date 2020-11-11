@@ -30,8 +30,8 @@ namespace Datos
             uid = "root";
             password = "root";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";
 
@@ -49,14 +49,7 @@ namespace Datos
             }
             catch (MySqlException ex)
             {
-
                 Console.WriteLine(ex.Message);
-
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
                 switch (ex.Number)
                 {
 
