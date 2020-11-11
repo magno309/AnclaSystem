@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -35,6 +36,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtEfectivo = new System.Windows.Forms.TextBox();
             this.btnAbrirCaja = new System.Windows.Forms.Button();
+            this.errorProviderEfectivo = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEfectivo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -98,6 +101,11 @@
             this.btnAbrirCaja.TabIndex = 6;
             this.btnAbrirCaja.Text = "Abrir/Cerrar caja";
             this.btnAbrirCaja.UseVisualStyleBackColor = true;
+            this.btnAbrirCaja.Click += new System.EventHandler(this.btnAbrirCaja_Click);
+            // 
+            // errorProviderEfectivo
+            // 
+            this.errorProviderEfectivo.ContainerControl = this;
             // 
             // frmCaja
             // 
@@ -117,6 +125,7 @@
             this.Name = "frmCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Apertura/Cierre de caja";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEfectivo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +140,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEfectivo;
         private System.Windows.Forms.Button btnAbrirCaja;
+        private System.Windows.Forms.ErrorProvider errorProviderEfectivo;
     }
 }
