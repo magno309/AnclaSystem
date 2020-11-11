@@ -8,26 +8,67 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Vista
 {
     public partial class frmCaja : Form
     {
-        private string fechaIncio="";
+        private string fechaApertura;
+        private string usuarioApertura;
+        private decimal efectivoApertura;
+        private bool cajaAbierta;
 
         public frmCaja()
         {
             InitializeComponent();
-            //posible solución para guardar fecha
-            //fechaIncio = Datos.Properties.Settings.Default.CajaFechaInicio;
-            if (fechaIncio.Equals(""))
+            fechaApertura = Properties.Settings.Default.cajaFechaApertura;
+            usuarioApertura = Properties.Settings.Default.cajaUsuarioApertura;
+            if (string.IsNullOrEmpty(fechaApertura) && string.IsNullOrEmpty(usuarioApertura))
             {
-                fechaIncio = DateTime.Now.ToString();
-                btnAbrirCaja.Text = "Abrir Caja";
-                this.Text = "Abrir Caja";
-            }            
-            lblFecha.Text = fechaIncio;
-            lblUsuario.Text = "Cajero_1"; //probablemente obtener de Datos.Properties.Settings.Default.Usuario;
+                fechaApertura = DateTime.Now.ToString();
+                usuarioApertura = Properties.Settings.Default.nombreUsuarioL;     
+                this.Text = "Apertura de caja";
+                btnAbrirCaja.Text = "Abrir caja";                
+                cajaAbierta = false;
+            }
+            else
+            {
+                this.Text = "Cierre de caja";
+                btnAbrirCaja.Text = "Cerrar caja";
+                cajaAbierta = true;
+            }
+            lblFecha.Text = fechaApertura;
+            lblUsuario.Text = usuarioApertura;
+        }
+
+        private void btnAbrirCaja_Click(object sender, EventArgs e)
+        {
+            errorProviderEfectivo.SetError(txtEfectivo, "");
+            if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoApertura))
+            {                
+                if (cajaAbierta == false)
+                {
+                    Properties.Settings.Default.cajaFechaApertura = fechaApertura;
+                    Properties.Settings.Default.cajaUsuarioApertura = usuarioApertura;
+                    Properties.Settings.Default.cajaEfectivoApertura = efectivoApertura;
+                    Properties.Settings.Default.Save();                    
+                    MessageBox.Show("Apertura de caja realizada exitosamente");
+                    this.Close();
+                }
+                else
+                {
+                    //generar reporte de cierre de caja
+                    Properties.Settings.Default.cajaFechaApertura = "";
+                    Properties.Settings.Default.cajaUsuarioApertura = "";
+                    Properties.Settings.Default.cajaEfectivoApertura = 0;
+                    Properties.Settings.Default.Save();                    
+                    MessageBox.Show("Cierre de caja realizado exitosamente");
+                    this.Close();
+                }
+            }
+            else
+            {
+                errorProviderEfectivo.SetError(txtEfectivo, "Ingresa una cantidad correcta");
+            }
         }
 
         private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)
@@ -41,11 +82,6 @@ namespace Vista
             {
                 e.Handled = true;
             }
-        }
-
-        private void btnAbrirCaja_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
