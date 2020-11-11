@@ -99,7 +99,7 @@ namespace Modelo
             }
         }
 
-        public List<List<object>> ejecutarConsulta(string query) {
+        public List<List<object>> ejecutarConsulta( string query) {
             List<List<object>> lista = new List<List<object>>();
             if (this.OpenConnection()) {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -109,6 +109,32 @@ namespace Modelo
                     lista.Add(new List<object>());
                     for (int i = 0; i < dataReader.FieldCount; i++) {
                         lista[index].Add(dataReader[ dataReader.GetName(i) ]);
+                    }
+                    index++;
+                }
+                dataReader.Close();
+                this.CloseConnection();
+            }
+            return lista;
+        }
+
+        /// <summary>
+        /// Sobrecarga del método ejecutarConsulta. Para aquellas consultas que incluyan parametros en el comando.
+        /// Estos serán configurados desde el DAO. y se enviaran mediante el MySqlCommand
+        /// </summary>
+        /// <param name="cmd">Comando de consulta con parametros</param>
+        /// <returns>Una lista de un arreglo de objetos, cada Lista contenida en la Lista principal, contiene los campos de un solo registro.</returns>
+        public List<List<object>> ejecutarConsulta(MySqlCommand cmd /*string query*/) {
+            List<List<object>> lista = new List<List<object>>();
+            if (this.OpenConnection()) {
+                //MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Connection = connection;        // Esta línea sustituye a la de arriba
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                int index = 0;
+                while (dataReader.Read()) {
+                    lista.Add(new List<object>());
+                    for (int i = 0; i < dataReader.FieldCount; i++) {
+                        lista[index].Add(dataReader[dataReader.GetName(i)]);
                     }
                     index++;
                 }
