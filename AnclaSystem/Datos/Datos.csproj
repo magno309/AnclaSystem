@@ -7,8 +7,8 @@
     <ProjectGuid>{95DE1D23-4023-4154-A0F4-99F1F05EFCA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Datos</RootNamespace>
-    <AssemblyName>Datos</AssemblyName>
+    <RootNamespace>Modelo</RootNamespace>
+    <AssemblyName>Modelo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -46,18 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DetalleVentas.cs" />
-    <Compile Include="Inventario.cs" />
-    <Compile Include="Productos.cs" />
-    <Compile Include="Usuario.cs" />
-    <Compile Include="Ventas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Modelo\Datos.csproj">
-      <Project>{c03e0414-b4c2-40b0-a68e-6505006bfd64}</Project>
-      <Name>Modelo</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

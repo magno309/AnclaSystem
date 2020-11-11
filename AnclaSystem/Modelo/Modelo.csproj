@@ -7,8 +7,8 @@
     <ProjectGuid>{C03E0414-B4C2-40B0-A68E-6505006BFD64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Modelo</RootNamespace>
-    <AssemblyName>Modelo</AssemblyName>
+    <RootNamespace>Datos</RootNamespace>
+    <AssemblyName>Datos</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -84,20 +84,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.cs" />
-    <Compile Include="daoProducto.cs" />
-    <Compile Include="daoUsuario.cs" />
-    <Compile Include="daoVentas.cs" />
+    <Compile Include="DetalleVentas.cs" />
+    <Compile Include="Inventario.cs" />
+    <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="Ventas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Datos\Modelo.csproj">
+    <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{95de1d23-4023-4154-a0f4-99f1f05efca7}</Project>
-      <Name>Modelo</Name>
+      <Name>Datos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

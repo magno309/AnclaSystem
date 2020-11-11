@@ -12,5 +12,6 @@ namespace Modelo
         public int ID_VENT { get; set; }
         public int CANTIDAD { get; set; }
         public double PRECIO_VENTA { get; set; }
+        public double SUBTOTAL { get; set; }
     }
 }
