@@ -41,6 +41,12 @@ namespace Vista
 
                 //ocultar ID
                 dgvProductos.Columns[0].Visible = false;
+                //ocultar descontinuado
+                dgvProductos.Columns[3].Visible = false;
+
+                //poner nombre
+                dgvProductos.Columns[1].HeaderText = "PRODUCTO";
+                dgvProductos.Columns[1].HeaderText = "PRECIO";
             }
             catch (Exception ex)
             {
@@ -49,6 +55,21 @@ namespace Vista
         }
 
         private void dgvProductos_DoubleClick(object sender, EventArgs e)
+        {
+            cantProd();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            registrarVenta();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            registrarVenta();
+        }
+
+        private void cantProd()
         {
             IDseleccionado = dgvProductos.CurrentCell.RowIndex;
 
@@ -60,6 +81,7 @@ namespace Vista
             {
                 DetalleVentas detalle = new DetalleVentas();
                 detalle.ID_PROD = listaProductos[IDseleccionado].ID;
+                detalle.NOMBRE_AUX = listaProductos[IDseleccionado].nombre; //solo para mostrar en la tabla
                 detalle.PRECIO_VENTA = listaProductos[IDseleccionado].precio;
                 detalle.CANTIDAD = cantidad;
                 detalle.SUBTOTAL = cantidad * listaProductos[IDseleccionado].precio;
@@ -67,19 +89,17 @@ namespace Vista
                 dgvDetalle.DataSource = null;
                 dgvDetalle.DataSource = listaDetalles;
 
+                //ocultar IDS
+                dgvDetalle.Columns[0].Visible = false;
+                dgvDetalle.Columns[1].Visible = false;
+
+                //poner nombres
+                dgvDetalle.Columns[2].HeaderText = "PRODUCTO";
+                dgvDetalle.Columns[4].HeaderText = "PRECIO";
+
                 total += detalle.SUBTOTAL;
                 lblTotal.Text = "$" + total;
             }
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            registrarVenta();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            registrarVenta();
         }
 
         private void registrarVenta()
@@ -100,6 +120,15 @@ namespace Vista
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void dgvProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cantProd();
+                e.Handled = true;
+            }
         }
     }
 }
