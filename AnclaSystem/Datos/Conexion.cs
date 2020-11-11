@@ -23,14 +23,18 @@ namespace Datos
 
         private void Inicializar()
         {
-            server = "25.89.125.13";
+            server = "localhost";
             port = "8457";
             database = "ANCLA";
-            uid = "remoto";
-            password = "remoto1";
+            uid = "root";
+            password = "root";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString =  "SERVER=" + server + ";" + "DATABASE=" +
+                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";
+
+
 
             connection = new MySqlConnection(connectionString);
         }
@@ -54,6 +58,7 @@ namespace Datos
                 //1045: Invalid user name and/or password.
                 switch (ex.Number)
                 {
+
                     case 0:
                         //MessageBox.Show("Cannot connect to server.  Contact administrator");
                         break;
