@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
-namespace Modelo {
+namespace Datos {
     public class Conexion {
         private MySqlConnection connection;
         private string server;
