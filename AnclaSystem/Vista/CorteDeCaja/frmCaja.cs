@@ -83,10 +83,5 @@ namespace Vista
                 e.Handled = true;
             }
         }
-
-        private void btnAbrirCaja_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
