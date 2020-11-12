@@ -106,5 +106,41 @@ namespace Vista.Properties {
                 this["cajaEfectivoApertura"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cajaAbierta {
+            get {
+                return ((bool)(this["cajaAbierta"]));
+            }
+            set {
+                this["cajaAbierta"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cajaFechaCierre {
+            get {
+                return ((string)(this["cajaFechaCierre"]));
+            }
+            set {
+                this["cajaFechaCierre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal cajaEfectivoCierre {
+            get {
+                return ((decimal)(this["cajaEfectivoCierre"]));
+            }
+            set {
+                this["cajaEfectivoCierre"] = value;
+            }
+        }
     }
 }

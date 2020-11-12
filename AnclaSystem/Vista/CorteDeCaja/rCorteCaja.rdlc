@@ -98,14 +98,14 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha">
+      <Textbox Name="txtFechaApertura">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Fecha de inicio]</Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -157,14 +157,14 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha2">
+      <Textbox Name="txtFechaCierre">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Fecha de fin]</Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -216,14 +216,14 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha3">
+      <Textbox Name="txtImporteInicio">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Con cuanto se inicio la caja]</Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -275,14 +275,14 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha4">
+      <Textbox Name="txtImporteFin">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Con cuanto se cerró la caja]</Value>
+                <Value />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -334,7 +334,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha5">
+      <Textbox Name="txtTotal">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
@@ -349,7 +349,7 @@
           </Paragraph>
         </Paragraphs>
         <Top>6.35676cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>3.55833cm</Left>
         <Height>0.6cm</Height>
         <Width>5.99312cm</Width>
         <ZIndex>11</ZIndex>
@@ -393,14 +393,14 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha6">
+      <Textbox Name="txtFaltante">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Total de ventas - fin - incio]</Value>
+                <Value EvaluationMode="Constant" />
                 <Style />
               </TextRun>
             </TextRuns>
@@ -482,6 +482,106 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VistaProperties">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>174417cb-e68b-411b-a4d8-f35bebd93f8f</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="Modelo">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a3a6313a-9945-4b9d-acbf-80892c31c913</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="RecursosLocales">
+      <Query>
+        <DataSourceName>VistaProperties</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="cajaAbierta">
+          <DataField>cajaAbierta</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="cajaEfectivoApertura">
+          <DataField>cajaEfectivoApertura</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="cajaEfectivoCierre">
+          <DataField>cajaEfectivoCierre</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="cajaFechaApertura">
+          <DataField>cajaFechaApertura</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cajaFechaCierre">
+          <DataField>cajaFechaCierre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cajaUsuarioApertura">
+          <DataField>cajaUsuarioApertura</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="esAdmin">
+          <DataField>esAdmin</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="idUsuarioL">
+          <DataField>idUsuarioL</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="nombreL">
+          <DataField>nombreL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nombreUsuarioL">
+          <DataField>nombreUsuarioL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Vista.Properties</rd:DataSetName>
+        <rd:TableName>Settings</rd:TableName>
+        <rd:ObjectDataSourceType>Vista.Properties.Settings, Properties.Resources.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="MySQL">
+      <Query>
+        <DataSourceName>Modelo</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FECHA">
+          <DataField>FECHA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ID_CAJERO">
+          <DataField>ID_CAJERO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TOTAL">
+          <DataField>TOTAL</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Modelo</rd:DataSetName>
+        <rd:TableName>Ventas</rd:TableName>
+        <rd:ObjectDataSourceType>Modelo.Ventas, Modelo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>be1aa045-0e7c-474b-b200-bb3663d242f7</rd:ReportID>
 </Report>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Datos;
+using Modelo;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace Modelo {
+namespace Datos {
     public class daoUsuario {
         //Conexión con la BD
 

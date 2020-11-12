@@ -209,6 +209,8 @@
     </Compile>
     <EmbeddedResource Include="CorteDeCaja\rCorteCaja.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Modelo.Ventas.datasource" />
+    <None Include="Properties\DataSources\Vista.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

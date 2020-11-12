@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
-namespace Modelo {
+namespace Datos{
     public class Conexion {
         private MySqlConnection connection;
         private string server;
@@ -20,13 +20,13 @@ namespace Modelo {
         }
 
         private void Inicializar() {
-            server = "localhost";
+            server = "25.89.125.13";
             port = "8457";
             database = "ANCLA";
             uid = "root";
             password = "root";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + server + ";" + "port=" + port + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";

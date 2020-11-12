@@ -19,15 +19,27 @@ namespace Vista.MenuPrincipal
 
         private void btnAgregarVenta_Click(object sender, EventArgs e)
         {
-            //Si ya se abrió caja
-            frmVenta frm = new frmVenta();
-            frm.Show();
+            if (Properties.Settings.Default.cajaAbierta)
+            {
+                frmVenta frm = new frmVenta();
+                frm.Show();
+            }
+            else {
+                MessageBox.Show(this, "Debe realizar una apertura de caja!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
         }
 
-        private void abrirCajaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
 
+        private void frmMenu_Load(object sender, EventArgs e)
+        {
+            lblModo.Text = Properties.Settings.Default.esAdmin ? "Administrador" : "Usuario";
+        }
+
+        private void btnCorteDeCaja_Click(object sender, EventArgs e)
+        {
+            frmCaja frm = new frmCaja();
+            frm.ShowDialog();
         }
     }
 }

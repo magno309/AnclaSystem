@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace Vista
     {
         private string fechaApertura;
         private string usuarioApertura;
-        private decimal efectivoApertura;
+        private decimal efectivoIngresado;
         private bool cajaAbierta;
 
         public frmCaja()
@@ -43,13 +44,14 @@ namespace Vista
         private void btnAbrirCaja_Click(object sender, EventArgs e)
         {
             errorProviderEfectivo.SetError(txtEfectivo, "");
-            if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoApertura))
+            if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoIngresado))
             {                
                 if (cajaAbierta == false)
                 {
                     Properties.Settings.Default.cajaFechaApertura = fechaApertura;
                     Properties.Settings.Default.cajaUsuarioApertura = usuarioApertura;
-                    Properties.Settings.Default.cajaEfectivoApertura = efectivoApertura;
+                    Properties.Settings.Default.cajaEfectivoApertura = efectivoIngresado;
+                    Properties.Settings.Default.cajaAbierta = true;
                     Properties.Settings.Default.Save();                    
                     MessageBox.Show("Apertura de caja realizada exitosamente");
                     this.Close();
@@ -57,9 +59,14 @@ namespace Vista
                 else
                 {
                     //generar reporte de cierre de caja
+                    Properties.Settings.Default.cajaFechaCierre = DateTime.Now.ToString();
+                    Properties.Settings.Default.cajaEfectivoCierre = efectivoIngresado;
+                    generarReporte();
                     Properties.Settings.Default.cajaFechaApertura = "";
+                    Properties.Settings.Default.cajaFechaCierre = "";
                     Properties.Settings.Default.cajaUsuarioApertura = "";
                     Properties.Settings.Default.cajaEfectivoApertura = 0;
+                    Properties.Settings.Default.cajaAbierta = false;
                     Properties.Settings.Default.Save();                    
                     MessageBox.Show("Cierre de caja realizado exitosamente");
                     this.Close();
@@ -69,6 +76,14 @@ namespace Vista
             {
                 errorProviderEfectivo.SetError(txtEfectivo, "Ingresa una cantidad correcta");
             }
+        }
+
+        private void generarReporte()
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.LocalReport.ReportEmbeddedResource = "Vista.rCorteCaja.rdlc";
+            reportViewer.RefreshReport();
+            reportViewer.Show();
         }
 
         private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)
