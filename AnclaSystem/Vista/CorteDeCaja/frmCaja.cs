@@ -80,10 +80,10 @@ namespace Vista
 
         private void generarReporte()
         {
-            /*ReportViewer reportViewer = new ReportViewer();
+            ReportViewer reportViewer = new ReportViewer();
             reportViewer.LocalReport.ReportEmbeddedResource = "Vista.rCorteCaja.rdlc";
             reportViewer.RefreshReport();
-            reportViewer.Show();*/
+            reportViewer.Show();
         }
 
         private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)

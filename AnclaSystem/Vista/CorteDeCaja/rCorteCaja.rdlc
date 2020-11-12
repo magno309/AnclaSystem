@@ -105,7 +105,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Fields!cajaFechaApertura.Value</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -552,7 +552,7 @@
         <rd:ObjectDataSourceType>Vista.Properties.Settings, Properties.Resources.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="MySQL">
+    <DataSet Name="Ventas">
       <Query>
         <DataSourceName>Modelo</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
