@@ -20,7 +20,7 @@ namespace Modelo {
         }
 
         private void Inicializar() {
-            server = "localhost";
+            server = "25.89.125.13";
             port = "8457";
             database = "ANCLA";
             uid = "root";
