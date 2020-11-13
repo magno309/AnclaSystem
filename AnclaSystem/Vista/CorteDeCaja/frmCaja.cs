@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vista.CorteDeCaja;
+using Datos;
+using Modelo;
 
 namespace Vista
 {
@@ -79,7 +82,24 @@ namespace Vista
 
         private void generarReporte()
         {
-
+            double totalVentas = new daoVentas().obtenerTotalVentasPorFecha(DateTime.Today);
+            ReporteCaja nuevo = new ReporteCaja(
+                    Properties.Settings.Default.idUsuarioL,
+                    Properties.Settings.Default.cajaFechaApertura,
+                    Properties.Settings.Default.cajaFechaCierre,
+                    (double)Properties.Settings.Default.cajaEfectivoApertura,
+                    (double)Properties.Settings.Default.cajaEfectivoCierre,
+                    totalVentas,
+                    (totalVentas - (double)Properties.Settings.Default.cajaEfectivoCierre)
+                );
+            if (new daoReporteCaja().insertarReporteCaja(nuevo))
+            {
+                frmReporteCaja frm = new frmReporteCaja();
+                frm.ShowDialog();
+            }
+            else {
+                MessageBox.Show(this, "Error al cerrar caja!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)

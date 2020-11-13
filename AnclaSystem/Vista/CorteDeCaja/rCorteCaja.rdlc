@@ -24,7 +24,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Height>1.71125cm</Height>
-        <Width>10.29229cm</Width>
+        <Width>10.55687cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -56,7 +56,7 @@
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.88764cm</Top>
         <Height>0.67938cm</Height>
-        <Width>10.29229cm</Width>
+        <Width>10.55687cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -76,17 +76,21 @@
             <TextRuns>
               <TextRun>
                 <Value>Apertura de caja:</Value>
-                <Style />
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>3.2512cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -105,17 +109,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value EvaluationMode="Constant" />
+                <Value>=First(Fields!cajaFechaApertura.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>3.2512cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>3.98166cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>5.7991cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -135,17 +141,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Cierre de caja:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.02759cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -164,17 +175,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=First(Fields!cajaFechaCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>4.02759cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>4.05222cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>5.72854cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -194,17 +207,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Importe de inicio:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.80398cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37312cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -223,17 +241,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!cajaEfectivoApertura.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>4.80398cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55353cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -253,17 +273,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Importe de fin:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>5.58037cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -282,17 +307,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>5.58037cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -312,17 +339,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Total de ventas:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>6.35676cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -341,17 +373,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Total de ventas]</Value>
+                <Value>=Sum(Fields!TOTAL.Value, "Ventas")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>6.35676cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>4.05223cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -371,17 +405,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Faltante:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>7.13314cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -400,17 +439,19 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value EvaluationMode="Constant" />
+                <Value>=Sum(Fields!TOTAL.Value, "Ventas") - Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>7.13314cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>4.05223cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -424,9 +465,9 @@
       </Textbox>
       <Line Name="Line3">
         <Top>9.33662cm</Top>
-        <Left>1.18745cm</Left>
+        <Left>0.7673cm</Left>
         <Height>0cm</Height>
-        <Width>7.99042cm</Width>
+        <Width>9.01346cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -452,9 +493,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
         <Top>9.51301cm</Top>
-        <Left>1.18745cm</Left>
+        <Left>0.7673cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.99042cm</Width>
+        <Width>9.01346cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -470,7 +511,7 @@
     <Height>4.17708in</Height>
     <Style />
   </Body>
-  <Width>4.05208in</Width>
+  <Width>4.15625in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

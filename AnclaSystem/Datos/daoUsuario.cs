@@ -74,7 +74,6 @@ namespace Datos {
                     obj.esAdmin = bool.Parse(row[4].ToString());
                     obj.esActivo = bool.Parse(row[5].ToString());
                 }
-
             }
             catch (Exception e) {
                 throw e;

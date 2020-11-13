@@ -12,5 +12,15 @@ namespace Modelo
         public double TOTAL { get; set; }
         public String FECHA{ get; set; }
         public int ID_CAJERO { get; set; }
+
+        public Ventas() { }
+
+        public Ventas(int iD, double tOTAL, string fECHA, int iD_CAJERO)
+        {
+            ID = iD;
+            TOTAL = tOTAL;
+            FECHA = fECHA;
+            ID_CAJERO = iD_CAJERO;
+        }
     }
 }

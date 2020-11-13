@@ -111,7 +111,7 @@ namespace Datos{
         /// </summary>
         /// <param name="cmd">Comando de consulta con parametros</param>
         /// <returns>Una lista de un arreglo de objetos, cada Lista contenida en la Lista principal, contiene los campos de un solo registro.</returns>
-        public List<List<object>> ejecutarConsulta(MySqlCommand cmd /*string query*/) {
+        public List<List<object>> ejecutarConsulta(MySqlCommand cmd) {
             List<List<object>> lista = new List<List<object>>();
             if (this.OpenConnection()) {
                 //MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -129,6 +129,19 @@ namespace Datos{
                 this.CloseConnection();
             }
             return lista;
+        }
+
+        public bool ejecutarSentencia(MySqlCommand cmd) {
+            if (this.OpenConnection()) {
+                cmd.Connection = connection;
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

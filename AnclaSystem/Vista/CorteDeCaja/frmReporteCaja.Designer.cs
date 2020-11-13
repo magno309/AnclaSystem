@@ -28,19 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.SettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.VentasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VentasBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer1.DocumentMapWidth = 38;
+            reportDataSource1.Name = "RecursosLocales";
+            reportDataSource1.Value = this.SettingsBindingSource;
+            reportDataSource2.Name = "Ventas";
+            reportDataSource2.Value = this.VentasBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Vista.CorteDeCaja.rCorteCaja.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(12, 12);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(654, 480);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // SettingsBindingSource
+            // 
+            this.SettingsBindingSource.DataSource = typeof(Vista.Properties.Settings);
+            // 
+            // VentasBindingSource
+            // 
+            this.VentasBindingSource.DataSource = typeof(Modelo.Ventas);
             // 
             // frmReporteCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 457);
+            this.ClientSize = new System.Drawing.Size(678, 504);
+            this.Controls.Add(this.reportViewer1);
             this.Name = "frmReporteCaja";
-            this.Text = "frmReporteCaja";
+            this.Text = "Reporte de corte de caja";
+            this.Load += new System.EventHandler(this.frmReporteCaja_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VentasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource SettingsBindingSource;
+        private System.Windows.Forms.BindingSource VentasBindingSource;
     }
 }
