@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-
-namespace Modelo {
+namespace Datos {
     public class Conexion {
         private MySqlConnection connection;
         private string server;
@@ -20,13 +19,13 @@ namespace Modelo {
         }
 
         private void Inicializar() {
-            server = "localhost";
+            server = "25.89.125.13";
             port = "8457";
             database = "ANCLA";
             uid = "root";
             password = "root";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + server + ";" + "port=" + port + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";
@@ -111,7 +110,7 @@ namespace Modelo {
         /// </summary>
         /// <param name="cmd">Comando de consulta con parametros</param>
         /// <returns>Una lista de un arreglo de objetos, cada Lista contenida en la Lista principal, contiene los campos de un solo registro.</returns>
-        public List<List<object>> ejecutarConsulta(MySqlCommand cmd /*string query*/) {
+        public List<List<object>> ejecutarConsulta(MySqlCommand cmd) {
             List<List<object>> lista = new List<List<object>>();
             if (this.OpenConnection()) {
                 //MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -129,6 +128,19 @@ namespace Modelo {
                 this.CloseConnection();
             }
             return lista;
+        }
+
+        public bool ejecutarSentencia(MySqlCommand cmd) {
+            if (this.OpenConnection()) {
+                cmd.Connection = connection;
+                cmd.ExecuteNonQuery();
+                this.CloseConnection();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -24,7 +24,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Height>1.71125cm</Height>
-        <Width>10.29229cm</Width>
+        <Width>10.55687cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -56,7 +56,7 @@
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.88764cm</Top>
         <Height>0.67938cm</Height>
-        <Width>10.29229cm</Width>
+        <Width>10.55687cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -76,17 +76,21 @@
             <TextRuns>
               <TextRun>
                 <Value>Apertura de caja:</Value>
-                <Style />
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>3.2512cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -98,24 +102,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha">
+      <Textbox Name="txtFechaApertura">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Fecha de inicio]</Value>
+                <Value>=First(Fields!cajaFechaApertura.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>3.2512cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>3.98166cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>5.7991cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -135,17 +141,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Cierre de caja:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.02759cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -157,24 +168,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha2">
+      <Textbox Name="txtFechaCierre">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Fecha de fin]</Value>
+                <Value>=First(Fields!cajaFechaCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>4.02759cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>4.05222cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>5.72854cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -194,17 +207,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Importe de inicio:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.80398cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37312cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -216,24 +234,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha3">
+      <Textbox Name="txtImporteInicio">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Con cuanto se inicio la caja]</Value>
+                <Value>=Sum(Fields!cajaEfectivoApertura.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>4.80398cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55353cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -253,17 +273,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Importe de fin:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>5.58037cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -275,24 +300,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha4">
+      <Textbox Name="txtImporteFin">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Con cuanto se cerró la caja]</Value>
+                <Value>=Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>5.58037cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -312,17 +339,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Total de ventas:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>6.35676cm</Top>
-        <Left>0.7673cm</Left>
+        <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -334,24 +366,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha5">
+      <Textbox Name="txtTotal">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Total de ventas]</Value>
+                <Value>=Sum(Fields!TOTAL.Value, "Ventas")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>6.35676cm</Top>
-        <Left>3.55834cm</Left>
+        <Left>4.05223cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -371,17 +405,22 @@
             <TextRuns>
               <TextRun>
                 <Value>Faltante:</Value>
-                <Style />
+                <Style>
+                  <FontFamily />
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>7.13314cm</Top>
-        <Left>0.76729cm</Left>
+        <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.79104cm</Width>
+        <Width>3.37311cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -393,24 +432,26 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="txtFecha6">
+      <Textbox Name="txtFaltante">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Total de ventas - fin - incio]</Value>
+                <Value>=Sum(Fields!TOTAL.Value, "Ventas") - Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <Top>7.13314cm</Top>
-        <Left>3.55833cm</Left>
+        <Left>4.05223cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.99312cm</Width>
+        <Width>2.55354cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -424,9 +465,9 @@
       </Textbox>
       <Line Name="Line3">
         <Top>9.33662cm</Top>
-        <Left>1.18745cm</Left>
+        <Left>0.7673cm</Left>
         <Height>0cm</Height>
-        <Width>7.99042cm</Width>
+        <Width>9.01346cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -452,9 +493,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
         <Top>9.51301cm</Top>
-        <Left>1.18745cm</Left>
+        <Left>0.7673cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.99042cm</Width>
+        <Width>9.01346cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -470,7 +511,7 @@
     <Height>4.17708in</Height>
     <Style />
   </Body>
-  <Width>4.05208in</Width>
+  <Width>4.15625in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -482,6 +523,106 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VistaProperties">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>174417cb-e68b-411b-a4d8-f35bebd93f8f</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="Modelo">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a3a6313a-9945-4b9d-acbf-80892c31c913</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="RecursosLocales">
+      <Query>
+        <DataSourceName>VistaProperties</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="cajaAbierta">
+          <DataField>cajaAbierta</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="cajaEfectivoApertura">
+          <DataField>cajaEfectivoApertura</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="cajaEfectivoCierre">
+          <DataField>cajaEfectivoCierre</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="cajaFechaApertura">
+          <DataField>cajaFechaApertura</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cajaFechaCierre">
+          <DataField>cajaFechaCierre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cajaUsuarioApertura">
+          <DataField>cajaUsuarioApertura</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="esAdmin">
+          <DataField>esAdmin</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="idUsuarioL">
+          <DataField>idUsuarioL</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="nombreL">
+          <DataField>nombreL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nombreUsuarioL">
+          <DataField>nombreUsuarioL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Vista.Properties</rd:DataSetName>
+        <rd:TableName>Settings</rd:TableName>
+        <rd:ObjectDataSourceType>Vista.Properties.Settings, Properties.Resources.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Ventas">
+      <Query>
+        <DataSourceName>Modelo</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FECHA">
+          <DataField>FECHA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ID_CAJERO">
+          <DataField>ID_CAJERO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TOTAL">
+          <DataField>TOTAL</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Modelo</rd:DataSetName>
+        <rd:TableName>Ventas</rd:TableName>
+        <rd:ObjectDataSourceType>Modelo.Ventas, Modelo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>be1aa045-0e7c-474b-b200-bb3663d242f7</rd:ReportID>
 </Report>

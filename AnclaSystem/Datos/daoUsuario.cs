@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Datos;
+using Modelo;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace Modelo {
+namespace Datos {
     public class daoUsuario {
         //Conexión con la BD
 
@@ -74,7 +74,6 @@ namespace Modelo {
                     obj.esAdmin = bool.Parse(row[4].ToString());
                     obj.esActivo = bool.Parse(row[5].ToString());
                 }
-
             }
             catch (Exception e) {
                 throw e;
