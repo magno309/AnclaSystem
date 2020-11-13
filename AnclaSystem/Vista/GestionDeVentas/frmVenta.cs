@@ -23,8 +23,8 @@ namespace Vista
         int IDseleccionado; //id del producto doble al dar clic
         int cantidad = 0; //cantidad de productos
         double total = 0; //total de la venta
-        int cajeroID = 1; //cambiar cuando este el login
-        String usuario = "NOMBRE USAURIO"; //es el autenticado
+        int cajeroID = Properties.Settings.Default.idUsuarioL; //id del usuario autenticado
+        String usuario = Properties.Settings.Default.nombreUsuarioL; //es el autenticado
         public frmVenta()
         {
             InitializeComponent();
