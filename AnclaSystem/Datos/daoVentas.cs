@@ -173,5 +173,48 @@ namespace Datos
                 cn.Dispose();
             }
         }
+
+        public List<Ventas> obtenerTodos() {
+            List<Ventas> listaVentas = new List<Ventas>();
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "select * from VENTAS;";
+                foreach(List<object> l in cn.ejecutarConsulta(query)){
+                    Ventas nueva = new Ventas();
+                    nueva.ID = int.Parse(l[0].ToString());
+                    nueva.TOTAL = (double) decimal.Parse(l[1].ToString());
+                    nueva.FECHA = l[3].ToString();
+                    nueva.ID_CAJERO = int.Parse(l[4].ToString());
+                    listaVentas.Add(nueva);
+                }
+                return listaVentas;
+            }
+            catch (Exception e) {
+                return null;
+            }
+        }
+
+        public double obtenerTotalVentasPorFecha(DateTime fecha)
+        {
+            List<Ventas> listaVentas = new List<Ventas>();
+            Conexion cn = new Conexion();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.CommandText = "select SUM(TOTAL) from VENTAS where DATE(FECHA) = @Fecha;";
+                cmd.Parameters.AddWithValue("@Fecha", fecha);
+                List<List<object>> resultado = cn.ejecutarConsulta(cmd);
+                if (resultado.Count >= 1) {
+                    List<object> fila = resultado[0];
+                    return double.Parse(fila[0].ToString());
+                }
+                return -1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
     }
 }
