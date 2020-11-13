@@ -1,5 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,10 +79,7 @@ namespace Vista
 
         private void generarReporte()
         {
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.LocalReport.ReportEmbeddedResource = "Vista.rCorteCaja.rdlc";
-            reportViewer.RefreshReport();
-            reportViewer.Show();
+
         }
 
         private void txtEfectivo_KeyPress(object sender, KeyPressEventArgs e)
