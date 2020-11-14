@@ -44,15 +44,15 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.lblVentaId = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.lblUsuario = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.lblNow = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.btnReg = new System.Windows.Forms.Button();
             this.erroP = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -140,7 +140,7 @@
             this.groupBox2.Controls.Add(this.dgvProductos);
             this.groupBox2.Location = new System.Drawing.Point(13, 28);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(768, 188);
+            this.groupBox2.Size = new System.Drawing.Size(768, 278);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lista de productos";
@@ -157,7 +157,7 @@
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(756, 253);
+            this.dgvProductos.Size = new System.Drawing.Size(756, 247);
             this.dgvProductos.TabIndex = 1;
             this.dgvProductos.DoubleClick += new System.EventHandler(this.dgvProductos_DoubleClick);
             this.dgvProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductos_KeyDown);
@@ -230,6 +230,12 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel2.Text = "Usuario:";
+            // 
             // lblUsuario
             // 
             this.lblUsuario.Name = "lblUsuario";
@@ -240,6 +246,12 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(77, 22);
+            this.toolStripLabel3.Text = "Fecha y hora:";
             // 
             // lblNow
             // 
@@ -273,18 +285,6 @@
             // erroP
             // 
             this.erroP.ContainerControl = this;
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(50, 22);
-            this.toolStripLabel2.Text = "Usuario:";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(77, 22);
-            this.toolStripLabel3.Text = "Fecha y hora:";
             // 
             // frmVenta
             // 

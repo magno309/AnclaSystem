@@ -41,5 +41,11 @@ namespace Vista.MenuPrincipal
             frmCaja frm = new frmCaja();
             frm.ShowDialog();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Vista.GestionDeVentas.frmListaVentas frm = new GestionDeVentas.frmListaVentas();
+            frm.Show();
+        }
     }
 }
