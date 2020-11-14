@@ -44,7 +44,32 @@ namespace Vista.MenuPrincipal
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            Vista.GestionDeVentas.frmListaVentas frm = new GestionDeVentas.frmListaVentas();
+            frm.Show();
+        }
 
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            GestionDeProducto.frmCatalogoProducto frm = new GestionDeProducto.frmCatalogoProducto();
+            frm.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            frmInventario frm = new frmInventario();
+            frm.Show();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            frmDirectorioProveedores frm = new frmDirectorioProveedores();
+            frm.Show();
+        }
+
+        private void reportesDeCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CorteDeCaja.frmListaReportesCaja frm = new CorteDeCaja.frmListaReportesCaja();
+            frm.Show();
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Vista
+namespace Vista.CorteDeCaja
 {
-    public partial class frmInventario : Form
+    public partial class frmListaReportesCaja : Form
     {
-        public frmInventario()
+        public frmListaReportesCaja()
         {
             InitializeComponent();
         }

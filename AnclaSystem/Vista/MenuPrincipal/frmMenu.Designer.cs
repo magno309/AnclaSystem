@@ -150,6 +150,7 @@
             this.toolStripButton3.Size = new System.Drawing.Size(117, 35);
             this.toolStripButton3.Text = "Lista de productos";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
             // 
@@ -159,6 +160,7 @@
             this.toolStripButton4.Size = new System.Drawing.Size(117, 35);
             this.toolStripButton4.Text = "Lista de ingredientes";
             this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator2
             // 
@@ -180,6 +182,7 @@
             this.toolStripButton5.Size = new System.Drawing.Size(117, 35);
             this.toolStripButton5.Text = "Lista de proveedores";
             this.toolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // menuStrip1
             // 
@@ -246,8 +249,9 @@
             // reportesDeCajaToolStripMenuItem
             // 
             this.reportesDeCajaToolStripMenuItem.Name = "reportesDeCajaToolStripMenuItem";
-            this.reportesDeCajaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.reportesDeCajaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reportesDeCajaToolStripMenuItem.Text = "Reportes de caja...";
+            this.reportesDeCajaToolStripMenuItem.Click += new System.EventHandler(this.reportesDeCajaToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 

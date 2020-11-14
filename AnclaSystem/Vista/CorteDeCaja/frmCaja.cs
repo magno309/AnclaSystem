@@ -83,16 +83,15 @@ namespace Vista
 
         private void generarReporte()
         {
-            double totalVentas = new daoVentas().obtenerTotalVentasPorFecha(DateTime.Now.ToString("yyyy-MM-dd"));
-  
+            Properties.Settings.Default.cajaEfectivoTotal = (decimal) new daoVentas().obtenerTotalVentasPorFecha(DateTime.Parse(DateTime.Today.ToString("MM-dd-yyyy")));
             ReporteCaja nuevo = new ReporteCaja(
                     Properties.Settings.Default.idUsuarioL,
                     Properties.Settings.Default.cajaFechaApertura,
                     Properties.Settings.Default.cajaFechaCierre,
                     (double)Properties.Settings.Default.cajaEfectivoApertura,
                     (double)Properties.Settings.Default.cajaEfectivoCierre,
-                    totalVentas,
-                    (totalVentas - (double)Properties.Settings.Default.cajaEfectivoCierre)
+                    (double)Properties.Settings.Default.cajaEfectivoTotal,
+                    ((double)Properties.Settings.Default.cajaEfectivoTotal - (double)Properties.Settings.Default.cajaEfectivoCierre)
                 );
             if (new daoReporteCaja().insertarReporteCaja(nuevo))
             {

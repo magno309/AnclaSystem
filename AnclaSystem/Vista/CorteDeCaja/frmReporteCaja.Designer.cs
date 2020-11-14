@@ -31,12 +31,14 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.VentasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VentasBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SettingsBindingSource
+            // 
+            this.SettingsBindingSource.DataSource = typeof(System.Configuration.ApplicationSettingsBase);
             // 
             // reportViewer1
             // 
@@ -47,7 +49,6 @@
             reportDataSource1.Name = "RecursosLocales";
             reportDataSource1.Value = this.SettingsBindingSource;
             reportDataSource2.Name = "Ventas";
-            reportDataSource2.Value = this.VentasBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Vista.CorteDeCaja.rCorteCaja.rdlc";
@@ -56,14 +57,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(654, 480);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // SettingsBindingSource
-            // 
-            this.SettingsBindingSource.DataSource = typeof(Vista.Properties.Settings);
-            // 
-            // VentasBindingSource
-            // 
-            this.VentasBindingSource.DataSource = typeof(Modelo.Ventas);
             // 
             // frmReporteCaja
             // 
@@ -75,7 +68,6 @@
             this.Text = "Reporte de corte de caja";
             this.Load += new System.EventHandler(this.frmReporteCaja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VentasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,6 +76,5 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource SettingsBindingSource;
-        private System.Windows.Forms.BindingSource VentasBindingSource;
     }
 }

@@ -373,7 +373,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!TOTAL.Value, "Ventas")</Value>
+                <Value>=Sum(Fields!cajaEfectivoTotal.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -439,7 +439,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!TOTAL.Value, "Ventas") - Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
+                <Value>=Sum(Fields!cajaEfectivoTotal.Value, "RecursosLocales") - Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -558,6 +558,10 @@
           <DataField>cajaEfectivoCierre</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="cajaEfectivoTotal">
+          <DataField>cajaEfectivoTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="cajaFechaApertura">
           <DataField>cajaFechaApertura</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -591,35 +595,6 @@
         <rd:DataSetName>Vista.Properties</rd:DataSetName>
         <rd:TableName>Settings</rd:TableName>
         <rd:ObjectDataSourceType>Vista.Properties.Settings, Properties.Resources.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="Ventas">
-      <Query>
-        <DataSourceName>Modelo</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="FECHA">
-          <DataField>FECHA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ID_CAJERO">
-          <DataField>ID_CAJERO</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TOTAL">
-          <DataField>TOTAL</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelo</rd:DataSetName>
-        <rd:TableName>Ventas</rd:TableName>
-        <rd:ObjectDataSourceType>Modelo.Ventas, Modelo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -142,5 +142,17 @@ namespace Vista.Properties {
                 this["cajaEfectivoCierre"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal cajaEfectivoTotal {
+            get {
+                return ((decimal)(this["cajaEfectivoTotal"]));
+            }
+            set {
+                this["cajaEfectivoTotal"] = value;
+            }
+        }
     }
 }
