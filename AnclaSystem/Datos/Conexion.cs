@@ -19,13 +19,13 @@ namespace Datos {
         }
 
         private void Inicializar() {
-            server = "25.89.125.13";
+            server = "localhost";
             port = "8457";
             database = "ANCLA";
-            uid = "root";
-            password = "root";
+            uid = "remoto";
+            password = "remoto1";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "port=" + port + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";

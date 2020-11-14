@@ -23,11 +23,12 @@ namespace Vista
         public frmCaja()
         {
             InitializeComponent();
+
             fechaApertura = Properties.Settings.Default.cajaFechaApertura;
             usuarioApertura = Properties.Settings.Default.cajaUsuarioApertura;
             if (string.IsNullOrEmpty(fechaApertura) && string.IsNullOrEmpty(usuarioApertura))
             {
-                fechaApertura = DateTime.Now.ToString();
+                fechaApertura = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                 usuarioApertura = Properties.Settings.Default.nombreUsuarioL;     
                 this.Text = "Apertura de caja";
                 btnAbrirCaja.Text = "Abrir caja";                
@@ -61,7 +62,7 @@ namespace Vista
                 else
                 {
                     //generar reporte de cierre de caja
-                    Properties.Settings.Default.cajaFechaCierre = DateTime.Now.ToString();
+                    Properties.Settings.Default.cajaFechaCierre = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                     Properties.Settings.Default.cajaEfectivoCierre = efectivoIngresado;
                     generarReporte();
                     Properties.Settings.Default.cajaFechaApertura = "";

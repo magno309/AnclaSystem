@@ -195,7 +195,7 @@ namespace Datos
             }
         }
 
-        public double obtenerTotalVentasPorFecha(DateTime fecha)
+        public double obtenerTotalVentasPorFecha(String fecha)
         {
             List<Ventas> listaVentas = new List<Ventas>();
             Conexion cn = new Conexion();
