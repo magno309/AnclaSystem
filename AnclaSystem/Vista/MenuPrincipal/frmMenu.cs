@@ -65,5 +65,11 @@ namespace Vista.MenuPrincipal
             frmDirectorioProveedores frm = new frmDirectorioProveedores();
             frm.Show();
         }
+
+        private void reportesDeCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CorteDeCaja.frmListaReportesCaja frm = new CorteDeCaja.frmListaReportesCaja();
+            frm.Show();
+        }
     }
 }

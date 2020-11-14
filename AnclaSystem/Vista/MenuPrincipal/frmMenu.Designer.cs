@@ -249,8 +249,9 @@
             // reportesDeCajaToolStripMenuItem
             // 
             this.reportesDeCajaToolStripMenuItem.Name = "reportesDeCajaToolStripMenuItem";
-            this.reportesDeCajaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.reportesDeCajaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reportesDeCajaToolStripMenuItem.Text = "Reportes de caja...";
+            this.reportesDeCajaToolStripMenuItem.Click += new System.EventHandler(this.reportesDeCajaToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
