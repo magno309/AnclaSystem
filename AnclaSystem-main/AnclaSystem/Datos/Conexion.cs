@@ -22,8 +22,8 @@ namespace Datos {
             server = "localhost";
             port = "8457";
             database = "ANCLA";
-            uid = "root";
-            password = "root";
+            uid = "remoto";
+            password = "remoto1";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
