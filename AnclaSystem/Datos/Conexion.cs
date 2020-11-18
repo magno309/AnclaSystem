@@ -22,8 +22,8 @@ namespace Datos {
             server = "25.89.125.13";
             port = "8457";
             database = "ANCLA";
-            uid = "remoto";
-            password = "remoto1";
+            uid = "root";
+            password = "root";
             string connectionString;
             connectionString = "SERVER=" + server + ";PORT=" + port + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PWD=" + password + ";AllowUserVariables=True";
@@ -140,6 +140,22 @@ namespace Datos {
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Para las transacciones
+        /// </summary>
+        /// <returns></returns>
+       public MySqlConnection getConexion()
+        {
+            if (this.OpenConnection())
+            {
+                return this.connection;
+            }
+            else
+            {
+                return null;
             }
         }
     }
