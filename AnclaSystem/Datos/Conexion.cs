@@ -142,5 +142,21 @@ namespace Datos {
                 return false;
             }
         }
+
+        /// <summary>
+        /// Para las transacciones
+        /// </summary>
+        /// <returns></returns>
+       public MySqlConnection getConexion()
+        {
+            if (this.OpenConnection())
+            {
+                return this.connection;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
