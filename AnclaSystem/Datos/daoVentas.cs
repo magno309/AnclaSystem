@@ -13,18 +13,6 @@ namespace Datos
     /// </summary>
     public class daoVentas
     {
-
-        /// <summary>
-        /// MODIFICAR CAMPOS PARA LA CONEXION A MYSQL
-        /// </summary>
-        static String server = "localhost";
-        static String port = "8457";
-        static String database = "ANCLA";
-        static String uid = "root";
-        static String password = "root";
-        static string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
         /// <summary>
         /// Metodo que registra una venta en la base de datos. Sus detalles y descuenta del inventario los productos vendidos.
         /// </summary>
@@ -33,8 +21,7 @@ namespace Datos
         /// <returns></returns>
         public bool agregarVenta(Ventas nuevaVenta, List<DetalleVentas> detalleVenta)
         {
-            MySqlConnection cn = new MySqlConnection(connectionString);
-            cn.Open();
+            MySqlConnection cn = new Conexion().getConexion(); //aqui ya se abre
 
             ///INICIAR TRANSACCION
             MySqlTransaction trans = cn.BeginTransaction();
@@ -140,37 +127,22 @@ namespace Datos
             }
         }
 
+        /// <summary>
+        /// Obtener el ID maximo
+        /// </summary>
+        /// <returns></returns>
         public int getMax()
-        {
-            int max = 0;
-            /// CREAR LA CONEXIÓN, CONFIGURAR Y ABRIRLA
-            MySqlConnection cn = new MySqlConnection(connectionString);
-
+        {            
+            Conexion cn = new Conexion();
             try
             {
-                cn.Open();
-
-                ///OBTENER EL ID DE LA VENTA RECIENTEMENTE REGISTRADA
-                string strSQL2 = "select MAX(ID) from VENTAS";
-                MySqlCommand comando2 = new MySqlCommand(strSQL2, cn);
-                MySqlDataReader dr = comando2.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    max = dr.GetInt32("MAX(ID)");
-                    comando2.Dispose();
-                }
-                dr.Dispose();
-                return max;
+                string strSQL = "select MAX(ID) from VENTAS;";
+                List<List<object>> max = cn.ejecutarConsulta(strSQL);
+                return Convert.ToInt32(max.ElementAt(0).ElementAt(0));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw ex;
-            }
-            finally
-            {
-                cn.Close();
-                cn.Dispose();
+                return 0;
             }
         }
 
@@ -195,15 +167,16 @@ namespace Datos
             }
         }
 
-        public double obtenerTotalVentasPorFecha(DateTime fecha)
+        public double obtenerTotalVentasPorFecha(string fechaInicio, string fechaFin)
         {
             List<Ventas> listaVentas = new List<Ventas>();
             Conexion cn = new Conexion();
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = "select SUM(TOTAL) from VENTAS where DATE(FECHA) = @Fecha;";
-                cmd.Parameters.AddWithValue("@Fecha", fecha);
+                cmd.CommandText = "select SUM(TOTAL) from VENTAS where FECHA between @FechaInicio and @FechaFin;";
+                cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
                 List<List<object>> resultado = cn.ejecutarConsulta(cmd);
                 if (resultado.Count >= 1) {
                     List<object> fila = resultado[0];

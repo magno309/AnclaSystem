@@ -23,14 +23,13 @@ namespace Vista.CorteDeCaja
 
         private void frmReporteCaja_Load(object sender, EventArgs e)
         {
-            List<Ventas> pruebaVentas = new List<Ventas>();
+            /*List<Ventas> pruebaVentas = new List<Ventas>();
             pruebaVentas.Add(new Ventas(1, 100, "2020-13-11", 1));
             pruebaVentas.Add(new Ventas(2, 200, "2020-13-11", 1));
             pruebaVentas.Add(new Ventas(3, 150, "2020-13-11", 1));
             pruebaVentas.Add(new Ventas(4, 300, "2020-13-11", 1));
-            pruebaVentas.Add(new Ventas(5, 100, "2020-13-11", 1));
+            pruebaVentas.Add(new Ventas(5, 100, "2020-13-11", 1));*/
             SettingsBindingSource.DataSource = Properties.Settings.Default;
-            VentasBindingSource.DataSource = pruebaVentas/*new daoVentas().obtenerTodos()*/;
             this.reportViewer1.RefreshReport();
         }
     }

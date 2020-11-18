@@ -118,8 +118,8 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <Top>3.2512cm</Top>
-        <Left>3.98166cm</Left>
+        <Top>3.28648cm</Top>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
         <Width>5.7991cm</Width>
         <ZIndex>3</ZIndex>
@@ -187,7 +187,7 @@
         <Top>4.02759cm</Top>
         <Left>4.05222cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.72854cm</Width>
+        <Width>5.79912cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -219,7 +219,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>4.80398cm</Top>
+        <Top>5.58037cm</Top>
         <Left>0.50272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.37312cm</Width>
@@ -250,7 +250,7 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <Top>4.80398cm</Top>
+        <Top>5.58037cm</Top>
         <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
         <Width>2.55353cm</Width>
@@ -285,7 +285,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>5.58037cm</Top>
+        <Top>4.80398cm</Top>
         <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
         <Width>3.37311cm</Width>
@@ -316,7 +316,7 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <Top>5.58037cm</Top>
+        <Top>4.80398cm</Top>
         <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
         <Width>2.55354cm</Width>
@@ -373,7 +373,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!TOTAL.Value, "Ventas")</Value>
+                <Value>=Sum(Fields!cajaEfectivoTotal.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -417,8 +417,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>7.13314cm</Top>
-        <Left>0.50272cm</Left>
+        <Top>7.13315cm</Top>
+        <Left>0.50273cm</Left>
         <Height>0.6cm</Height>
         <Width>3.37311cm</Width>
         <ZIndex>12</ZIndex>
@@ -439,7 +439,9 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!TOTAL.Value, "Ventas") - Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
+                <Value>=(Sum(Fields!cajaEfectivoApertura.Value, "RecursosLocales") + 
+Sum(Fields!cajaEfectivoTotal.Value, "RecursosLocales")) -
+Sum(Fields!cajaEfectivoCierre.Value, "RecursosLocales")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -448,8 +450,8 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <Top>7.13314cm</Top>
-        <Left>4.05223cm</Left>
+        <Top>7.13315cm</Top>
+        <Left>4.05224cm</Left>
         <Height>0.6cm</Height>
         <Width>2.55354cm</Width>
         <ZIndex>13</ZIndex>
@@ -464,7 +466,7 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>9.33662cm</Top>
+        <Top>11.45329cm</Top>
         <Left>0.7673cm</Left>
         <Height>0cm</Height>
         <Width>9.01346cm</Width>
@@ -492,7 +494,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox22</rd:DefaultName>
-        <Top>9.51301cm</Top>
+        <Top>11.62968cm</Top>
         <Left>0.7673cm</Left>
         <Height>0.6cm</Height>
         <Width>9.01346cm</Width>
@@ -507,8 +509,50 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Line Name="Line4">
+        <Top>6.99204cm</Top>
+        <Left>4.05224cm</Left>
+        <Height>0cm</Height>
+        <Width>2.55354cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>+</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>6.03926cm</Top>
+        <Left>6.78216cm</Left>
+        <Height>0.6cm</Height>
+        <Width>0.595cm</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.17708in</Height>
+    <Height>5.08333in</Height>
     <Style />
   </Body>
   <Width>4.15625in</Width>
@@ -558,6 +602,10 @@
           <DataField>cajaEfectivoCierre</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="cajaEfectivoTotal">
+          <DataField>cajaEfectivoTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="cajaFechaApertura">
           <DataField>cajaFechaApertura</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -591,35 +639,6 @@
         <rd:DataSetName>Vista.Properties</rd:DataSetName>
         <rd:TableName>Settings</rd:TableName>
         <rd:ObjectDataSourceType>Vista.Properties.Settings, Properties.Resources.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="Ventas">
-      <Query>
-        <DataSourceName>Modelo</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="FECHA">
-          <DataField>FECHA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ID_CAJERO">
-          <DataField>ID_CAJERO</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TOTAL">
-          <DataField>TOTAL</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Modelo</rd:DataSetName>
-        <rd:TableName>Ventas</rd:TableName>
-        <rd:ObjectDataSourceType>Modelo.Ventas, Modelo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

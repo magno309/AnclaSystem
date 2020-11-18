@@ -19,14 +19,14 @@ namespace Datos {
         }
 
         private void Inicializar() {
-            server = "25.89.125.13";
-            port = "8457";
-            database = "ANCLA";
-            uid = "root";
-            password = "root";
+            server = "remotemysql.com";
+            port = "3306";
+            database = "xpycSmCcRA";
+            uid = "xpycSmCcRA";
+            password = "XXcAGrUXKg";
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "port=" + port + ";" + "DATABASE=" +
-                                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";PORT=" + port + ";" + "DATABASE=" +
+                                database + ";" + "UID=" + uid + ";" + "PWD=" + password + ";AllowUserVariables=True";
 
             //"server=25.89.125.13;port=8457;uid=remoto;pwd=remoto1;database=ANCLA;Allow User Variables=True";
 
@@ -140,6 +140,22 @@ namespace Datos {
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Para las transacciones
+        /// </summary>
+        /// <returns></returns>
+       public MySqlConnection getConexion()
+        {
+            if (this.OpenConnection())
+            {
+                return this.connection;
+            }
+            else
+            {
+                return null;
             }
         }
     }
