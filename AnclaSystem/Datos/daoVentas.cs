@@ -167,15 +167,16 @@ namespace Datos
             }
         }
 
-        public double obtenerTotalVentasPorFecha(String fecha)
+        public double obtenerTotalVentasPorFecha(string fechaInicio, string fechaFin)
         {
             List<Ventas> listaVentas = new List<Ventas>();
             Conexion cn = new Conexion();
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = "select SUM(TOTAL) from VENTAS where DATE(FECHA) = @Fecha;";
-                cmd.Parameters.AddWithValue("@Fecha", fecha);
+                cmd.CommandText = "select SUM(TOTAL) from VENTAS where FECHA between @FechaInicio and @FechaFin;";
+                cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
                 List<List<object>> resultado = cn.ejecutarConsulta(cmd);
                 if (resultado.Count >= 1) {
                     List<object> fila = resultado[0];
