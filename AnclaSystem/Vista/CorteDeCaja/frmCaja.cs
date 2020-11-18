@@ -23,7 +23,6 @@ namespace Vista
         public frmCaja()
         {
             InitializeComponent();
-
             fechaApertura = Properties.Settings.Default.cajaFechaApertura;
             usuarioApertura = Properties.Settings.Default.cajaUsuarioApertura;
             if (string.IsNullOrEmpty(fechaApertura) && string.IsNullOrEmpty(usuarioApertura))
@@ -96,7 +95,7 @@ namespace Vista
                     (double)Properties.Settings.Default.cajaEfectivoTotal,
                     ((double)Properties.Settings.Default.cajaEfectivoTotal - (double)Properties.Settings.Default.cajaEfectivoCierre)
                 );
-            if (new daoReporteCaja().insertarReporteCaja(nuevo))
+            if (/*new daoReporteCaja().insertarReporteCaja(nuevo)*/ true)
             {
                 frmReporteCaja frm = new frmReporteCaja();
                 frm.ShowDialog();
