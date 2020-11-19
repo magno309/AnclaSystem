@@ -141,12 +141,6 @@
     <Compile Include="IncioDeSesion\frmInicioSesion.Designer.cs">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionDeProveedores\frmModificarProveedores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GestionDeProveedores\frmModificarProveedores.Designer.cs">
-      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
-    </Compile>
     <Compile Include="GestionDeProveedores\frmDirectorioProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,9 +196,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IncioDeSesion\frmInicioSesion.resx">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GestionDeProveedores\frmModificarProveedores.resx">
-      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeProveedores\frmDirectorioProveedores.resx">
       <DependentUpon>frmDirectorioProveedores.cs</DependentUpon>

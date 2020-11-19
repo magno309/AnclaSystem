@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="daoProveedor.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="daoProducto.cs" />
     <Compile Include="daoReporteCaja.cs" />
