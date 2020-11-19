@@ -71,5 +71,34 @@ namespace Vista.MenuPrincipal
             CorteDeCaja.frmListaReportesCaja frm = new CorteDeCaja.frmListaReportesCaja();
             frm.Show();
         }
+
+        private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (CloseCancel() == System.Windows.Forms.DialogResult.Yes)
+            {
+                Dispose(true);
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        public static DialogResult CloseCancel()
+        {
+            const string message = "¿Está seguro que desea salir de la aplicación?";
+            const string caption = "Salir";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            return result;
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -19,11 +19,11 @@ namespace Datos {
         }
 
         private void Inicializar() {
-            server = "25.89.125.13";
-            port = "8457";
-            database = "ANCLA";
-            uid = "root";
-            password = "root";
+            server = "remotemysql.com";
+            port = "3306";
+            database = "xpycSmCcRA";
+            uid = "xpycSmCcRA";
+            password = "XXcAGrUXKg";
             string connectionString;
             connectionString = "SERVER=" + server + ";PORT=" + port + ";" + "DATABASE=" +
                                 database + ";" + "UID=" + uid + ";" + "PWD=" + password + ";AllowUserVariables=True";
