@@ -216,6 +216,7 @@ namespace Vista
             txtTelefono.Text = "";
             txtCorreo.Text = "";
             txtDireccion.Text = "";
+            index = 0;
             cargarProveedores();
         }
 
