@@ -149,20 +149,27 @@ namespace Datos
         }
 
         /// <summary>
-        /// Metodo para buscar incidencias de proveedores con el nombre de empresa o de contacto que el usuario indique
+        /// Metodo para buscar incidencias de proveedores con los datos enviados.
         /// </summary>
         /// <param name="clave">Nombre de contacto o empresa para buscar</param>
         /// <returns>Lista de proveedores que sus nombres de empresa o contacto coinciden con clave</returns>
-        public List<Proveedores> buscarProveedor(String clave)
+        public List<Proveedores> buscarProveedor(String keyContacto, String keyEmpresa, String keyTelefono, 
+            String keyDireccion, String keyCorreo)
         {
             List<Proveedores> proveedores = new List<Proveedores>();
             Conexion cn = new Conexion();
 
             try
             {
-                string strSQL = "SELECT * FROM PROVEEDORES WHERE (NOMBRE_EMPRESA LIKE '%@KEY%' OR NOMBRE_CONTACTO LIKE '%@KEY%')";
+                string strSQL = "SELECT * FROM PROVEEDORES WHERE (NOMBRE_EMPRESA LIKE @EMPRESA OR NOMBRE_CONTACTO " +
+                    "LIKE @CONTACTO OR TELEFONO LIKE @TEL OR CORREO LIKE @CORREO OR DIRECCION LIKE " +
+                    "@DIRECCION);";
                 MySqlCommand comando = new MySqlCommand(strSQL);
-                comando.Parameters.AddWithValue("KEY", clave);
+                comando.Parameters.AddWithValue("@EMPRESA", keyEmpresa.Equals("") ? "%\"\"%" : "%" + keyEmpresa + "%");
+                comando.Parameters.AddWithValue("@CONTACTO", keyContacto.Equals("") ? "%\"\"%"  : "%" + keyContacto + "%");
+                comando.Parameters.AddWithValue("@TEL", keyTelefono.Equals("") ? "%\"\"%" : "%" + keyTelefono + "%");
+                comando.Parameters.AddWithValue("@CORREO", keyCorreo.Equals("") ? "%\"\"%" : "%" + keyCorreo + "%");
+                comando.Parameters.AddWithValue("@DIRECCION", keyDireccion.Equals("") ? "%\"\"%" : "%" + keyDireccion + "%");
 
                 foreach (List<object> fila in cn.ejecutarConsulta(comando))
                 {

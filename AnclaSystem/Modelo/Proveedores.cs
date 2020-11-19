@@ -19,5 +19,14 @@ namespace Modelo
         {
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Proveedores proveedores &&
+                   NombreEmpresa == proveedores.NombreEmpresa &&
+                   NombreContacto == proveedores.NombreContacto &&
+                   Telefono == proveedores.Telefono &&
+                   Correo == proveedores.Correo &&
+                   Direccion == proveedores.Direccion;
+        }
     }
 }
