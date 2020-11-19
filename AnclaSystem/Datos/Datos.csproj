@@ -46,15 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DetalleVentas.cs" />
-    <Compile Include="Inventario.cs" />
-    <Compile Include="Productos.cs" />
-    <Compile Include="Usuario.cs" />
-    <Compile Include="Ventas.cs" />
+    <Compile Include="Conexion.cs" />
+    <Compile Include="daoProducto.cs" />
+    <Compile Include="daoReporteCaja.cs" />
+    <Compile Include="daoUsuario.cs" />
+    <Compile Include="daoVentas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Modelo\Datos.csproj">
+    <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c03e0414-b4c2-40b0-a68e-6505006bfd64}</Project>
       <Name>Modelo</Name>
     </ProjectReference>

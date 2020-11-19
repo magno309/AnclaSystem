@@ -22,5 +22,137 @@ namespace Vista.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int idUsuarioL {
+            get {
+                return ((int)(this["idUsuarioL"]));
+            }
+            set {
+                this["idUsuarioL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nombreL {
+            get {
+                return ((string)(this["nombreL"]));
+            }
+            set {
+                this["nombreL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nombreUsuarioL {
+            get {
+                return ((string)(this["nombreUsuarioL"]));
+            }
+            set {
+                this["nombreUsuarioL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool esAdmin {
+            get {
+                return ((bool)(this["esAdmin"]));
+            }
+            set {
+                this["esAdmin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cajaFechaApertura {
+            get {
+                return ((string)(this["cajaFechaApertura"]));
+            }
+            set {
+                this["cajaFechaApertura"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cajaUsuarioApertura {
+            get {
+                return ((string)(this["cajaUsuarioApertura"]));
+            }
+            set {
+                this["cajaUsuarioApertura"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal cajaEfectivoApertura {
+            get {
+                return ((decimal)(this["cajaEfectivoApertura"]));
+            }
+            set {
+                this["cajaEfectivoApertura"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cajaAbierta {
+            get {
+                return ((bool)(this["cajaAbierta"]));
+            }
+            set {
+                this["cajaAbierta"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cajaFechaCierre {
+            get {
+                return ((string)(this["cajaFechaCierre"]));
+            }
+            set {
+                this["cajaFechaCierre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal cajaEfectivoCierre {
+            get {
+                return ((decimal)(this["cajaEfectivoCierre"]));
+            }
+            set {
+                this["cajaEfectivoCierre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal cajaEfectivoTotal {
+            get {
+                return ((decimal)(this["cajaEfectivoTotal"]));
+            }
+            set {
+                this["cajaEfectivoTotal"] = value;
+            }
+        }
     }
 }

@@ -15,8 +15,7 @@ namespace Modelo {
         public bool esAdmin { get; set; }
         public bool esActivo { get; set; }
 
-        public Usuario()
-        {
+        public Usuario() {
 
         }
 
@@ -28,7 +27,7 @@ namespace Modelo {
             this.esAdmin = esAdmin;
             this.esActivo = esActivo;
         }
-        public Usuario( string nombre, string nombre_usuario, string contrasenia, bool esAdmin, bool esActivo) {
+        public Usuario(string nombre, string nombre_usuario, string contrasenia, bool esAdmin, bool esActivo) {
             this.nombre = nombre;
             this.nombre_usuario = nombre_usuario;
             this.contrasenia = contrasenia;

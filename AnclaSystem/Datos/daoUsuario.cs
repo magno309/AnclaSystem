@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelo;
-
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Datos {
     public class daoUsuario {
@@ -59,6 +59,25 @@ namespace Datos {
         /// <returns>Objeto de tipo Usuario con el resultado de la busqueda. Estará vacío si no se encuentra.</returns>
         public Usuario buscarUno(String nombre_usuario) {
             Usuario obj = new Usuario();
+            try {
+                Conexion con = new Conexion();
+                MySqlCommand comando = new MySqlCommand();
+                comando.CommandText = "Select * from USUARIOS where NOMBRE_USUARIO = @nomU;";
+                comando.Parameters.AddWithValue("@nomU", nombre_usuario);
+                List<List<Object>> ret = con.ejecutarConsulta(comando);
+                if (ret.Count == 1) {
+                    List<Object> row = ret[0];
+                    obj.id = int.Parse(row[0].ToString());
+                    obj.nombre = row[1].ToString();
+                    obj.nombre_usuario = row[2].ToString();
+                    obj.contrasenia = row[3].ToString();
+                    obj.esAdmin = bool.Parse(row[4].ToString());
+                    obj.esActivo = bool.Parse(row[5].ToString());
+                }
+            }
+            catch (Exception e) {
+                throw e;
+            }
 
             return obj;
         }
