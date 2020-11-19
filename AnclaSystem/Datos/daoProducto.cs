@@ -40,5 +40,9 @@ namespace Datos
                 throw e;
             }
         }
+
+        public bool AgregarProducto(Productos nuevo) {
+            
+        }
     }
 }

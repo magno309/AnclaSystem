@@ -84,7 +84,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetalleProducto.cs" />
     <Compile Include="DetalleVentas.cs" />
+    <Compile Include="Ingrediente.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

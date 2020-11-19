@@ -95,7 +95,7 @@ namespace Vista
                     (double)Properties.Settings.Default.cajaEfectivoTotal,
                     ((double)Properties.Settings.Default.cajaEfectivoTotal - (double)Properties.Settings.Default.cajaEfectivoCierre)
                 );
-            if (/*new daoReporteCaja().insertarReporteCaja(nuevo)*/ true)
+            if (new daoReporteCaja().insertarReporteCaja(nuevo))
             {
                 frmReporteCaja frm = new frmReporteCaja();
                 frm.ShowDialog();
