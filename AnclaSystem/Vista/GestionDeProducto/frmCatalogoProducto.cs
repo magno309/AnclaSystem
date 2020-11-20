@@ -25,7 +25,6 @@ namespace Vista.GestionDeProducto
         private void frmCatalogoProducto_Activated(object sender, EventArgs e)
         {
             listaProductos = new daoProducto().getProductosNoDescontinuados();
-            dgvProductos.Rows.Clear();
             dgvProductos.DataSource = listaProductos;
             dgvProductos.Columns[0].Visible = false;
             dgvProductos.Columns[3].Visible = false;

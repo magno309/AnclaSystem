@@ -42,7 +42,7 @@ namespace Datos
         }
 
         public bool AgregarProducto(Productos nuevo) {
-            
+            return false;
         }
     }
 }

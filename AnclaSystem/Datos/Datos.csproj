@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="daoIngredientes.cs" />
     <Compile Include="daoProducto.cs" />
     <Compile Include="daoReporteCaja.cs" />
     <Compile Include="daoUsuario.cs" />

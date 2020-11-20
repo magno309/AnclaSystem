@@ -38,9 +38,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnAgregarIngrediente = new System.Windows.Forms.ToolStripButton();
             this.btnEliminarIngrediente = new System.Windows.Forms.ToolStripButton();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cbIngredientes = new System.Windows.Forms.ToolStripComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
@@ -138,22 +140,14 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAgregarIngrediente,
+            this.toolStripDropDownButton1,
+            this.toolStripSeparator1,
             this.btnEliminarIngrediente});
             this.toolStrip1.Location = new System.Drawing.Point(3, 22);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(381, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnAgregarIngrediente
-            // 
-            this.btnAgregarIngrediente.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarIngrediente.Image")));
-            this.btnAgregarIngrediente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgregarIngrediente.Name = "btnAgregarIngrediente";
-            this.btnAgregarIngrediente.Size = new System.Drawing.Size(69, 22);
-            this.btnAgregarIngrediente.Text = "Agregar";
-            this.btnAgregarIngrediente.Click += new System.EventHandler(this.btnAgregarIngrediente_Click);
             // 
             // btnEliminarIngrediente
             // 
@@ -174,6 +168,27 @@
             this.btnAceptar.Text = "Agregar producto";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cbIngredientes});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(164, 22);
+            this.toolStripDropDownButton1.Text = "Seleccionar ingredientes";
+            this.toolStripDropDownButton1.ToolTipText = "Seleccionar ingredientes";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cbIngredientes
+            // 
+            this.cbIngredientes.Name = "cbIngredientes";
+            this.cbIngredientes.Size = new System.Drawing.Size(121, 23);
             // 
             // frmDetalleProducto
             // 
@@ -210,8 +225,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvIngredientes;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnAgregarIngrediente;
         private System.Windows.Forms.ToolStripButton btnEliminarIngrediente;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripComboBox cbIngredientes;
     }
 }

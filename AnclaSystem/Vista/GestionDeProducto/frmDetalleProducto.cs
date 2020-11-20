@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Datos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,9 @@ namespace Vista.GestionDeProducto
         public frmDetalleProducto(int modo)
         {
             InitializeComponent();
+            cbIngredientes.ComboBox.DisplayMember = "NOMBRE";
+            cbIngredientes.ComboBox.ValueMember = "ID";
+            cbIngredientes.ComboBox.DataSource = new daoIngredientes().obtenerTodos();
             switch (modo) {
                 case 1:
                     this.Text = "Agregar producto";
