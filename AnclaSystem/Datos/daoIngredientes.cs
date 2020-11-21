@@ -11,6 +11,8 @@ namespace Datos
     public class daoIngredientes
     {
 
+
+
         public List<Ingrediente> obtenerTodos() {
             List<Ingrediente> listaIngredientes = new List<Ingrediente>();
             Conexion cn = new Conexion();

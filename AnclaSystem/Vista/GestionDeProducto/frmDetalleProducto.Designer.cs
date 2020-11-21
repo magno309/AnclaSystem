@@ -38,11 +38,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEliminarIngrediente = new System.Windows.Forms.ToolStripButton();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.cbIngredientes = new System.Windows.Forms.ToolStripComboBox();
+            this.btnAgregarIngrediente = new System.Windows.Forms.ToolStripButton();
+            this.colIngrediente = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
@@ -128,19 +129,25 @@
             // 
             // dgvIngredientes
             // 
+            this.dgvIngredientes.AllowUserToAddRows = false;
+            this.dgvIngredientes.AllowUserToDeleteRows = false;
             this.dgvIngredientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIngredientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colIngrediente,
+            this.colCantidad});
             this.dgvIngredientes.Location = new System.Drawing.Point(11, 50);
             this.dgvIngredientes.Name = "dgvIngredientes";
             this.dgvIngredientes.Size = new System.Drawing.Size(370, 163);
             this.dgvIngredientes.TabIndex = 1;
+            this.dgvIngredientes.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvIngredientes_DefaultValuesNeeded);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
+            this.btnAgregarIngrediente,
             this.toolStripSeparator1,
             this.btnEliminarIngrediente});
             this.toolStrip1.Location = new System.Drawing.Point(3, 22);
@@ -149,13 +156,19 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnEliminarIngrediente
             // 
             this.btnEliminarIngrediente.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarIngrediente.Image")));
             this.btnEliminarIngrediente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEliminarIngrediente.Name = "btnEliminarIngrediente";
-            this.btnEliminarIngrediente.Size = new System.Drawing.Size(70, 22);
-            this.btnEliminarIngrediente.Text = "Eliminar";
+            this.btnEliminarIngrediente.Size = new System.Drawing.Size(133, 22);
+            this.btnEliminarIngrediente.Text = "Eliminar ingrediente";
+            this.btnEliminarIngrediente.Click += new System.EventHandler(this.btnEliminarIngrediente_Click);
             // 
             // btnAceptar
             // 
@@ -169,26 +182,28 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // toolStripDropDownButton1
+            // btnAgregarIngrediente
             // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cbIngredientes});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(164, 22);
-            this.toolStripDropDownButton1.Text = "Seleccionar ingredientes";
-            this.toolStripDropDownButton1.ToolTipText = "Seleccionar ingredientes";
+            this.btnAgregarIngrediente.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarIngrediente.Image")));
+            this.btnAgregarIngrediente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgregarIngrediente.Name = "btnAgregarIngrediente";
+            this.btnAgregarIngrediente.Size = new System.Drawing.Size(132, 22);
+            this.btnAgregarIngrediente.Text = "Agregar ingrediente";
+            this.btnAgregarIngrediente.Click += new System.EventHandler(this.btnAgregarIngrediente_Click_1);
             // 
-            // toolStripSeparator1
+            // colIngrediente
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.colIngrediente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colIngrediente.HeaderText = "Ingrediente";
+            this.colIngrediente.Name = "colIngrediente";
+            this.colIngrediente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // cbIngredientes
+            // colCantidad
             // 
-            this.cbIngredientes.Name = "cbIngredientes";
-            this.cbIngredientes.Size = new System.Drawing.Size(121, 23);
+            this.colCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCantidad.HeaderText = "Cantidad";
+            this.colCantidad.Name = "colCantidad";
+            this.colCantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // frmDetalleProducto
             // 
@@ -227,8 +242,9 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnEliminarIngrediente;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripComboBox cbIngredientes;
+        private System.Windows.Forms.ToolStripButton btnAgregarIngrediente;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colIngrediente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
     }
 }
