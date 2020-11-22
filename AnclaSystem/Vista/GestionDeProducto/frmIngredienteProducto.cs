@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Vista
+namespace Vista.GestionDeProducto
 {
-    public partial class frmModificarProveedores : Form
+    public partial class frmIngredienteProducto : Form
     {
-        public frmModificarProveedores()
+        public frmIngredienteProducto()
         {
             InitializeComponent();
         }

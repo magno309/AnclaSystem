@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,6 +140,49 @@ namespace Datos {
             }
             else
             {
+                return false;
+            }
+        }
+
+        public bool EjecutarTransaccion(List<MySqlCommand> listaCmd)
+        {
+            if (this.OpenConnection())
+            {
+                MySqlTransaction transaction = connection.BeginTransaction();
+                try
+                {
+                    foreach (MySqlCommand cmd in listaCmd)
+                    {
+                        cmd.Connection = connection;
+                        cmd.Transaction = transaction;
+                        cmd.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (transaction.Connection != null)
+                        {
+                            Console.WriteLine("An exception of type " + ex.GetType() +
+                            " was encountered while attempting to roll back the transaction.");
+                        }
+                        return false;
+                    }
+                }
+                finally
+                {
+                    this.CloseConnection();
+                }
+            }
+            else {
                 return false;
             }
         }

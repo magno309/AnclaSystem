@@ -117,6 +117,12 @@
     <Compile Include="GestionDeProducto\frmCatalogoProducto.Designer.cs">
       <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionDeProducto\frmIngredienteProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeProducto\frmIngredienteProducto.Designer.cs">
+      <DependentUpon>frmIngredienteProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,12 +146,6 @@
     </Compile>
     <Compile Include="IncioDeSesion\frmInicioSesion.Designer.cs">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GestionDeProveedores\frmModificarProveedores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GestionDeProveedores\frmModificarProveedores.Designer.cs">
-      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionDeProveedores\frmDirectorioProveedores.cs">
       <SubType>Form</SubType>
@@ -191,6 +191,9 @@
     <EmbeddedResource Include="GestionDeProducto\frmCatalogoProducto.resx">
       <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeProducto\frmIngredienteProducto.resx">
+      <DependentUpon>frmIngredienteProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionDeUsuarios\frmDirectorioUsuarios.resx">
       <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,9 +205,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IncioDeSesion\frmInicioSesion.resx">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GestionDeProveedores\frmModificarProveedores.resx">
-      <DependentUpon>frmModificarProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeProveedores\frmDirectorioProveedores.resx">
       <DependentUpon>frmDirectorioProveedores.cs</DependentUpon>
