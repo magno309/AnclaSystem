@@ -33,5 +33,12 @@ namespace Modelo
             this.nombre = nombre;
             this.precio = precio;
         }
+
+        public Productos(string nombre, double precio, bool descontinuado)
+        {
+            this.nombre = nombre;
+            this.precio = precio;
+            this.descontinuado = descontinuado;
+        }
     }
 }
