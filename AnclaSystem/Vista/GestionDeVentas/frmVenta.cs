@@ -25,9 +25,62 @@ namespace Vista
         double total = 0; //total de la venta
         int cajeroID = Properties.Settings.Default.idUsuarioL; //id del usuario autenticado
         String usuario = Properties.Settings.Default.nombreUsuarioL; //es el autenticado
-        public frmVenta()
+        int IDDetalleSeleccionado;
+        bool esModificar = false;
+        public frmVenta(String uso, int indice)
         {
             InitializeComponent();
+            if (uso.Equals("detalles"))
+            {
+                esModificar = false;
+                dgvProductos.Enabled = false;
+                dgvDetalle.Enabled = false;
+                txtImporte.Enabled = false;
+                btnReg.Text = "Cerrar";
+                Ventas v = venta.obtenerTodos()[indice - 1];
+                listaDetalles = venta.detallesUnaVenta(v.ID);
+                foreach (DetalleVentas x in listaDetalles)
+                {
+                    x.SUBTOTAL = x.CANTIDAD * x.PRECIO_VENTA;
+                }
+                lblVentaId.Text = v.ID+"";
+                lblNow.Text = v.FECHA;
+                dgvDetalle.DataSource = listaDetalles;
+                dgvDetalle.Columns[0].Visible = false;
+                dgvDetalle.Columns[1].Visible = false;
+                toolStripButton1.Visible = false;
+            }
+            else if (uso.Equals("Agregar"))
+            {
+                esModificar = false;
+                dgvProductos.Enabled = true;
+                dgvDetalle.Enabled = true;
+                txtImporte.Enabled = true;
+                toolStripButton1.Visible = true;
+                btnReg.Text = "Registrar Venta";
+                iniciarForm();
+            }else if (uso.Equals("modificar"))
+            {
+                esModificar = true;
+                dgvProductos.Enabled = true;
+                dgvDetalle.Enabled = true;
+                txtImporte.Enabled = true;
+                toolStripButton1.Visible = true;
+                btnReg.Text = "Modificar Venta";
+                Ventas v = venta.obtenerTodos()[indice - 1];
+                listaDetalles = venta.detallesUnaVenta(v.ID);
+                foreach (DetalleVentas x in listaDetalles)
+                {
+                    x.SUBTOTAL = x.CANTIDAD * x.PRECIO_VENTA;
+                }
+                iniciarForm();
+                lblVentaId.Text = v.ID + "";
+                dgvDetalle.DataSource = listaDetalles;
+                dgvDetalle.Columns[0].Visible = false;
+                dgvDetalle.Columns[1].Visible = false;
+                toolStripButton1.Visible = false;
+            }
+
         }
 
         private void frmVenta_Load(object sender, EventArgs e)
@@ -171,19 +224,29 @@ namespace Vista
                         }
                     }
 
-                    ///SOLAMENTE REALIZAR LA VENTA SI NO HAY PROBLEMAS DE VALIDACION
+                    ///SOLAMENTE REALIZAR/MODIFICA LA VENTA SI NO HAY PROBLEMAS DE VALIDACION
                     if (valido)
                     {
-                        Ventas nuevaVenta = new Ventas();
-                        nuevaVenta.TOTAL = total;
-                        nuevaVenta.FECHA = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-                        nuevaVenta.ID_CAJERO = cajeroID;
-                        if (venta.agregarVenta(nuevaVenta, listaDetalles))
+                        if (esModificar)
                         {
-                            MessageBox.Show("Venta registrada con exito");
+                            if (venta.modificarDetalles(listaDetalles, int.Parse(lblVentaId.Text)))
+                            {
+                                MessageBox.Show("Modificacion Exitosa");
+                            }
+                            this.Close();
                         }
-
-                        ReloadForm();
+                        else
+                        {
+                            Ventas nuevaVenta = new Ventas();
+                            nuevaVenta.TOTAL = total;
+                            nuevaVenta.FECHA = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                            nuevaVenta.ID_CAJERO = cajeroID;
+                            if (venta.agregarVenta(nuevaVenta, listaDetalles))
+                            {
+                                MessageBox.Show("Venta registrada con exito");
+                            }
+                            ReloadForm();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -254,7 +317,17 @@ namespace Vista
 
         private void btnReg_Click(object sender, EventArgs e)
         {
-            registrarVenta();
+            if (btnReg.Text.Equals("Cerrar"))
+            {
+                this.Close();
+            }
+            else if(btnReg.Text.Equals("Registrar Venta"))
+            {
+                registrarVenta();
+            }else if (btnReg.Text.Equals("Modificar Venta"))
+            {
+
+            }
         }
 
         /// <summary>
@@ -344,6 +417,26 @@ namespace Vista
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dgvDetalle_DoubleClick(object sender, EventArgs e)
+        {
+            IDDetalleSeleccionado = dgvDetalle.CurrentCell.RowIndex;
+            //CALCULO DE TOTAL
+            total -= listaDetalles[IDDetalleSeleccionado].SUBTOTAL;
+            lblTotal.Text = "$" + total;
+            if (esModificar)
+            {
+                venta.eliminarDetalle(listaDetalles[IDDetalleSeleccionado]);
+            }
+            listaDetalles.RemoveAt(IDDetalleSeleccionado);
+            dgvDetalle.DataSource = null;
+            dgvDetalle.DataSource = listaDetalles;
+            dgvDetalle.Columns[0].Visible = false;
+            dgvDetalle.Columns[1].Visible = false;
+            dgvDetalle.Columns[2].HeaderText = "PRODUCTO";
+            dgvDetalle.Columns[4].HeaderText = "PRECIO";
 
         }
     }
