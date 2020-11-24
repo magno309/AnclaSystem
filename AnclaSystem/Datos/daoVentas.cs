@@ -170,6 +170,60 @@ namespace Datos
             }
         }
 
+        public List<Ventas> obtenerTodos(int ID_CAJERO)
+        {
+            List<Ventas> listaVentas = new List<Ventas>();
+            Conexion cn = new Conexion();
+
+            try
+            {
+                string query = "select V.ID, V.TOTAL,V.FECHA,V.ID_CAJERO,U.NOMBRE from VENTAS AS V JOIN USUARIOS AS U ON V.ID_CAJERO=U.ID WHERE V.ID_CAJERO=" + ID_CAJERO + ";";
+                foreach (List<object> l in cn.ejecutarConsulta(query))
+                {
+                    Ventas nueva = new Ventas();
+                    nueva.ID = int.Parse(l[0].ToString());
+                    nueva.TOTAL = (double)decimal.Parse(l[1].ToString());
+                    nueva.FECHA = l[2].ToString();
+                    nueva.ID_CAJERO = int.Parse(l[3].ToString());
+                    nueva.NOMBRE_CAJERO = l[4].ToString();
+                    listaVentas.Add(nueva);
+                }
+                return listaVentas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+                return null;
+            }
+        }
+
+        public List<Ventas> obtenerTodos(String FECHA)
+        {
+            List<Ventas> listaVentas = new List<Ventas>();
+            Conexion cn = new Conexion();
+
+            try
+            {
+                string query = "select V.ID, V.TOTAL,V.FECHA,V.ID_CAJERO,U.NOMBRE from VENTAS AS V JOIN USUARIOS AS U ON V.ID_CAJERO=U.ID WHERE DATE(V.FECHA)='"+FECHA+"';";
+                foreach (List<object> l in cn.ejecutarConsulta(query))
+                {
+                    Ventas nueva = new Ventas();
+                    nueva.ID = int.Parse(l[0].ToString());
+                    nueva.TOTAL = (double)decimal.Parse(l[1].ToString());
+                    nueva.FECHA = l[2].ToString();
+                    nueva.ID_CAJERO = int.Parse(l[3].ToString());
+                    nueva.NOMBRE_CAJERO = l[4].ToString();
+                    listaVentas.Add(nueva);
+                }
+                return listaVentas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+                return null;
+            }
+        }
+
         public double obtenerTotalVentasPorFecha(string fechaInicio, string fechaFin)
         {
             List<Ventas> listaVentas = new List<Ventas>();

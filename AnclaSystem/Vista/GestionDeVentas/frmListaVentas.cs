@@ -16,6 +16,7 @@ namespace Vista.GestionDeVentas
     public partial class frmListaVentas : Form
     {
         daoVentas ventas;
+        daoUsuario usuarios;
         int IDSeleccionado;
 
         public frmListaVentas()
@@ -56,6 +57,20 @@ namespace Vista.GestionDeVentas
             dgvVentas.DataSource = ventas.obtenerTodos();
             dgvVentas.Columns[0].HeaderText = "No. VENTA";
             dgvVentas.Columns[3].Visible = false;
+            cbCajero.DataSource = null;
+            //cbCajero.DataSource = usuarios.buscarTodos();
+        }
+
+        private void cbCajero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCajero.SelectedIndex >= 0)
+            {
+                ventas.obtenerTodos(((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).id);
+            }
+            else
+            {
+                actualizarTabla();
+            }
         }
     }
 }
