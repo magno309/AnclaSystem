@@ -22,10 +22,7 @@ namespace Vista.GestionDeVentas
         {
             ventas = new daoVentas();
             InitializeComponent();
-            dgvVentas.DataSource = null;
-            dgvVentas.DataSource = ventas.obtenerTodos();
-            dgvVentas.Columns[0].HeaderText = "No. VENTA";
-            dgvVentas.Columns[3].Visible = false;
+            actualizarTabla();
 
         }
 
@@ -44,12 +41,21 @@ namespace Vista.GestionDeVentas
         {
             frmVenta modificar = new frmVenta("modificar", ventas.obtenerTodos()[IDSeleccionado].ID);
             modificar.Show();
+            actualizarTabla();
         }
 
         private void btnVerDetalles_Click(object sender, EventArgs e)
         {
             frmVenta detalle = new frmVenta("detalles", ventas.obtenerTodos()[IDSeleccionado].ID);
             detalle.Show();
+        }
+
+        public void actualizarTabla()
+        {
+            dgvVentas.DataSource = null;
+            dgvVentas.DataSource = ventas.obtenerTodos();
+            dgvVentas.Columns[0].HeaderText = "No. VENTA";
+            dgvVentas.Columns[3].Visible = false;
         }
     }
 }
