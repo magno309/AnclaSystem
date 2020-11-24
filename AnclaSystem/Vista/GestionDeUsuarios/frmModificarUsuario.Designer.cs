@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,17 +39,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtConfirmar = new System.Windows.Forms.TextBox();
             this.chbAdmin = new System.Windows.Forms.CheckBox();
-            this.chbActivo = new System.Windows.Forms.CheckBox();
+            this.errorP = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorP)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnModificar
+            // btnGuardar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(182, 170);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(322, 30);
-            this.btnModificar.TabIndex = 17;
-            this.btnModificar.Text = "Modificar usuario";
-            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(311, 172);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(193, 30);
+            this.btnGuardar.TabIndex = 17;
+            this.btnGuardar.Text = "Modificar usuario";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // txtNombre
             // 
@@ -56,6 +59,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(322, 26);
             this.txtNombre.TabIndex = 9;
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // label1
             // 
@@ -81,6 +85,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(322, 26);
             this.txtUsuario.TabIndex = 11;
+            this.txtUsuario.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsuario_Validating);
             // 
             // label3
             // 
@@ -98,6 +103,7 @@
             this.txtContrasenia.PasswordChar = '*';
             this.txtContrasenia.Size = new System.Drawing.Size(322, 26);
             this.txtContrasenia.TabIndex = 12;
+            this.txtContrasenia.Validating += new System.ComponentModel.CancelEventHandler(this.txtContrasenia_Validating);
             // 
             // label4
             // 
@@ -115,35 +121,29 @@
             this.txtConfirmar.PasswordChar = '*';
             this.txtConfirmar.Size = new System.Drawing.Size(322, 26);
             this.txtConfirmar.TabIndex = 14;
+            this.txtConfirmar.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmar_Validating);
             // 
             // chbAdmin
             // 
             this.chbAdmin.AutoSize = true;
-            this.chbAdmin.Location = new System.Drawing.Point(182, 140);
+            this.chbAdmin.Location = new System.Drawing.Point(182, 142);
             this.chbAdmin.Name = "chbAdmin";
             this.chbAdmin.Size = new System.Drawing.Size(126, 24);
             this.chbAdmin.TabIndex = 18;
             this.chbAdmin.Text = "Administrador";
             this.chbAdmin.UseVisualStyleBackColor = true;
             // 
-            // chbActivo
+            // errorP
             // 
-            this.chbActivo.AutoSize = true;
-            this.chbActivo.Location = new System.Drawing.Point(314, 140);
-            this.chbActivo.Name = "chbActivo";
-            this.chbActivo.Size = new System.Drawing.Size(71, 24);
-            this.chbActivo.TabIndex = 19;
-            this.chbActivo.Text = "Activo";
-            this.chbActivo.UseVisualStyleBackColor = true;
+            this.errorP.ContainerControl = this;
             // 
             // frmModificarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 213);
-            this.Controls.Add(this.chbActivo);
+            this.ClientSize = new System.Drawing.Size(542, 218);
             this.Controls.Add(this.chbAdmin);
-            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txtConfirmar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtContrasenia);
@@ -155,7 +155,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmModificarUsuario";
-            this.Text = "ID Usuario: [ID]";
+            ((System.ComponentModel.ISupportInitialize)(this.errorP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,7 +163,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -173,6 +173,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtConfirmar;
         private System.Windows.Forms.CheckBox chbAdmin;
-        private System.Windows.Forms.CheckBox chbActivo;
+        private System.Windows.Forms.ErrorProvider errorP;
     }
 }

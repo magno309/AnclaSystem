@@ -35,10 +35,9 @@
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnModificar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
-            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPermisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtBuscar = new System.Windows.Forms.ToolStripTextBox();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.gbListaUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.toolStrip2.SuspendLayout();
@@ -56,7 +55,7 @@
             this.gbListaUsuarios.Size = new System.Drawing.Size(658, 407);
             this.gbListaUsuarios.TabIndex = 3;
             this.gbListaUsuarios.TabStop = false;
-            this.gbListaUsuarios.Text = "Lista de usuaios";
+            this.gbListaUsuarios.Text = "Usuarios del sistema";
             // 
             // dgvUsuarios
             // 
@@ -66,14 +65,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colNombre,
-            this.colUsuario,
-            this.colPermisos,
-            this.colActivo});
             this.dgvUsuarios.Location = new System.Drawing.Point(6, 50);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
+            this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(646, 351);
             this.dgvUsuarios.TabIndex = 1;
             // 
@@ -82,7 +77,10 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAgregar,
             this.btnModificar,
-            this.btnEliminar});
+            this.btnEliminar,
+            this.toolStripSeparator1,
+            this.btnBuscar,
+            this.txtBuscar});
             this.toolStrip2.Location = new System.Drawing.Point(3, 22);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(652, 25);
@@ -96,6 +94,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(69, 22);
             this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
@@ -104,6 +103,7 @@
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(78, 22);
             this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -112,30 +112,31 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(70, 22);
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // colNombre
+            // toolStripSeparator1
             // 
-            this.colNombre.HeaderText = "Nombre";
-            this.colNombre.Name = "colNombre";
-            this.colNombre.ReadOnly = true;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // colUsuario
+            // txtBuscar
             // 
-            this.colUsuario.HeaderText = "Usuario";
-            this.colUsuario.Name = "colUsuario";
-            this.colUsuario.ReadOnly = true;
+            this.txtBuscar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(100, 25);
+            this.txtBuscar.ToolTipText = "Usuario a buscar";
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
-            // colPermisos
+            // btnBuscar
             // 
-            this.colPermisos.HeaderText = "Permisos";
-            this.colPermisos.Name = "colPermisos";
-            this.colPermisos.ReadOnly = true;
-            // 
-            // colActivo
-            // 
-            this.colActivo.HeaderText = "Activo";
-            this.colActivo.Name = "colActivo";
-            this.colActivo.ReadOnly = true;
+            this.btnBuscar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(62, 22);
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.ToolTipText = "Buscar";
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // frmDirectorioUsuarios
             // 
@@ -164,9 +165,8 @@
         private System.Windows.Forms.ToolStripButton btnAgregar;
         private System.Windows.Forms.ToolStripButton btnModificar;
         private System.Windows.Forms.ToolStripButton btnEliminar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPermisos;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colActivo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnBuscar;
+        private System.Windows.Forms.ToolStripTextBox txtBuscar;
     }
 }

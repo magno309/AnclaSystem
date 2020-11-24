@@ -15,6 +15,6 @@ namespace Vista
         public frmInventario()
         {
             InitializeComponent();
-        }
+        }        
     }
 }
