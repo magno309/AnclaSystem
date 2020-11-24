@@ -223,9 +223,9 @@ namespace Datos
             MySqlConnection cn = new Conexion().getConexion();
             MySqlTransaction trans = cn.BeginTransaction();
             try
-            {               
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = "DROP FROM DETALLE_VENTAS WHERE ID_VENT=@ID_VENT AND ID_PROD=@ID_PROD;";
+            {
+                string strSQL = "DELETE FROM DETALLE_VENTAS WHERE ID_VENT=@ID_VENT AND ID_PROD=@ID_PROD;";
+                MySqlCommand cmd = new MySqlCommand(strSQL,cn);
                 cmd.Parameters.AddWithValue("@ID_VENT", detalle.ID_VENT);
                 cmd.Parameters.AddWithValue("@ID_PROD", detalle.ID_PROD);
                 cmd.ExecuteNonQuery();
@@ -250,7 +250,9 @@ namespace Datos
 
                 ///GUARDAR CADA DATO POR CADA PRODUCTO
                 listas.Add(ingredientes);
+                dr1.Close();
                 dr1.Dispose();
+                
 
 
                 ///MODIFICAR EL INVENTARIO
@@ -294,29 +296,56 @@ namespace Datos
             }
         }
 
-        public bool modificarDetalles(List<DetalleVentas> detalles, int ID_VENT)
+        public bool modificarDetalles(List<DetalleVentas> detalles, int ID_VENT, double nuevoTotal)
         {
             List<DetalleVentas> listaAux = detallesUnaVenta(ID_VENT);
             MySqlConnection cn = new Conexion().getConexion(); //aqui ya se abre la conexion
+            double total_actual = 0;
+
+            string str = "SELECT SUM(CANTIDAD*PRECIO_VENTA) AS TOTAL FROM DETALLE_VENTAS WHERE ID_VENT=@ID_VENT;";
+            MySqlCommand com = new MySqlCommand(str, cn);
+            com.Parameters.AddWithValue("ID_VENT", ID_VENT);
+            com.Dispose();
+            MySqlDataReader dr1 = com.ExecuteReader();
+            dr1.Read();
+            if (listaAux.Count > 0)
+            {
+                total_actual = dr1.GetDouble("TOTAL");
+            }
+            dr1.Close();
+            dr1.Dispose();
+            nuevoTotal += total_actual;
+
+            //YA QUE SE MODIFICO LA VENTA SE DEBE MODIFICAR EL TOTAL DE DICHA VENTA
+            string strSQL = "UPDATE VENTAS SET TOTAL=@TOTAL WHERE ID=@ID_VENT;";
+            MySqlCommand comando = new MySqlCommand(strSQL, cn);
+            comando.Parameters.AddWithValue("TOTAL", nuevoTotal);
+            comando.Parameters.AddWithValue("ID_VENT", ID_VENT);
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+
             foreach (DetalleVentas dt_nuevo in detalles)
             {
                 bool existe = false;
-                foreach (DetalleVentas dt in listaAux)
+                if (listaAux.Count>0)
                 {
-                    if (dt.ID_PROD == dt_nuevo.ID_PROD)
+                    foreach (DetalleVentas dt in listaAux)
                     {
-                        existe = true;
-                        break;
+                        if (dt.ID_PROD == dt_nuevo.ID_PROD)
+                        {
+                            existe = true;
+                            break;
+                        }
                     }
                 }
                 if (!existe)
                 {
                     ///INICIAR TRANSACCION
             MySqlTransaction trans = cn.BeginTransaction();
-
-            try
+                    try
             {
-                //SI EL DETALLE DE VENTA ES NUEVO SE AGREGA EN LA BASE DE DATOS
+
+                        //SI EL DETALLE DE VENTA ES NUEVO SE AGREGA EN LA BASE DE DATOS
                         string strSQL1 = "insert into DETALLE_VENTAS values (@ID_PROD, @ID_VENT, @CANTIDAD, @PRECIO_VENTA)";
                         MySqlCommand comando1 = new MySqlCommand(strSQL1, cn);
                         comando1.Parameters.AddWithValue("ID_PROD", dt_nuevo.ID_PROD);
@@ -328,7 +357,7 @@ namespace Datos
 
                 ///MODIFICAR EL INVENTARIO, DESCONTAR LOS INGREDIENTES DE LOS PRODUCTOS VENDIDOS
                 List<List<VentaAuxiliar>> listas = new List<List<VentaAuxiliar>>(); //lista de listas porque no me deja tener dos datareaders
-                MySqlDataReader dr1 = null;
+                
 
                     ///OBTENER EL ID DEL INVENARIO, LA CANTIDAD DE INGREDIENTES Y EL STOCK ACTUAL DE CADA PRODUCTO VENDIDO
                     List<VentaAuxiliar> ingredientes = new List<VentaAuxiliar>();
@@ -345,11 +374,11 @@ namespace Datos
 
                     ///GUARDAR CADA DATO POR CADA PRODUCTO
                     listas.Add(ingredientes);
-                    dr1.Dispose();
-                
+                        dr1.Close();
+                        dr1.Dispose();
 
-                ///MODIFICAR EL INVENTARIO
-                int nuevo_inv = 0;
+                        ///MODIFICAR EL INVENTARIO
+                        int nuevo_inv = 0;
                 foreach (List<VentaAuxiliar> lista in listas)
                 {
                     foreach (VentaAuxiliar aux in lista)
@@ -373,20 +402,14 @@ namespace Datos
 
                 ///TERMINAR TRANSACCION
                 trans.Commit();
-                return true;
             }
             catch (Exception ex)
             {
                 ///SI HAY ERROR DESHACER LO QUE SE LLEVARA EN LA TRANSACCION Y LANZAR EXCEPCION
                 trans.Rollback();
+                       
                 throw ex;
             }
-            finally
-            {
-                ///CERRAR TODO
-                cn.Close();
-                cn.Dispose();
-            } 
                 }
                 else
                 {
@@ -394,16 +417,18 @@ namespace Datos
                     MySqlTransaction trans = cn.BeginTransaction();
                     try
                     {
-                        //SI EL DETALLE DE VENTA ES NUEVO SE AGREGA EN LA BASE DE DATOS
-                        string strSQL1 = "UPDATE DETALLE_VENTAS SET CANTIDAD=@CANTIDAD)";
+
+                        //SI EL DETALLE DE VENTA ESTA REGISTRADO SE MODIFICA EN LA BASE DE DATOS
+                        string strSQL1 = "UPDATE DETALLE_VENTAS SET CANTIDAD=@CANTIDAD WHERE ID_VENT=@ID_VENT AND ID_PROD=@ID_PROD;";
                         MySqlCommand comando1 = new MySqlCommand(strSQL1, cn);
                         comando1.Parameters.AddWithValue("CANTIDAD", dt_nuevo.CANTIDAD);
+                        comando1.Parameters.AddWithValue("ID_VENT", dt_nuevo.ID_VENT);
+                        comando1.Parameters.AddWithValue("ID_PROD", dt_nuevo.ID_PROD);
                         comando1.ExecuteNonQuery();
                         comando1.Dispose();
 
                         ///MODIFICAR EL INVENTARIO, DESCONTAR LOS INGREDIENTES DE LOS PRODUCTOS VENDIDOS
                         List<List<VentaAuxiliar>> listas = new List<List<VentaAuxiliar>>(); //lista de listas porque no me deja tener dos datareaders
-                        MySqlDataReader dr1 = null;
 
                         ///OBTENER EL ID DEL INVENARIO, LA CANTIDAD DE INGREDIENTES Y EL STOCK ACTUAL DE CADA PRODUCTO VENDIDO
                         List<VentaAuxiliar> ingredientes = new List<VentaAuxiliar>();
@@ -417,11 +442,10 @@ namespace Datos
                         {
                             ingredientes.Add(new VentaAuxiliar(dt_nuevo.CANTIDAD, dr1.GetInt32("ID_INV"), dr1.GetInt32("CANTIDAD"), dr1.GetInt32("STOCK")));
                         }
-
+                        dr1.Close();
+                        dr1.Dispose();
                         ///GUARDAR CADA DATO POR CADA PRODUCTO
                         listas.Add(ingredientes);
-                        dr1.Dispose();
-
 
                         ///MODIFICAR EL INVENTARIO
                         int nuevo_inv = 0;
@@ -448,7 +472,6 @@ namespace Datos
 
                         ///TERMINAR TRANSACCION
                         trans.Commit();
-                        return true;
                     }
                     catch (Exception ex)
                     {
@@ -456,15 +479,13 @@ namespace Datos
                         trans.Rollback();
                         throw ex;
                     }
-                    finally
-                    {
-                        ///CERRAR TODO
-                        cn.Close();
-                        cn.Dispose();
-                    }
+                    
                 }
             }
-            return false;
+                ///CERRAR TODO
+                cn.Close();
+                cn.Dispose();
+            return true;
         }
     }
 }

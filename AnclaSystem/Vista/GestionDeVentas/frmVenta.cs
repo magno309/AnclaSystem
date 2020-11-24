@@ -43,12 +43,13 @@ namespace Vista
                 {
                     x.SUBTOTAL = x.CANTIDAD * x.PRECIO_VENTA;
                 }
-                lblVentaId.Text = v.ID+"";
-                lblNow.Text = v.FECHA;
                 dgvDetalle.DataSource = listaDetalles;
                 dgvDetalle.Columns[0].Visible = false;
                 dgvDetalle.Columns[1].Visible = false;
                 toolStripButton1.Visible = false;
+                lblVentaId.Text = v.ID + "";
+                lblNow.Text = v.FECHA;
+                this.Text = "Detalles de Venta";
             }
             else if (uso.Equals("Agregar"))
             {
@@ -64,7 +65,7 @@ namespace Vista
                 esModificar = true;
                 dgvProductos.Enabled = true;
                 dgvDetalle.Enabled = true;
-                txtImporte.Enabled = true;
+                txtImporte.Enabled = false;
                 toolStripButton1.Visible = true;
                 btnReg.Text = "Modificar Venta";
                 Ventas v = venta.obtenerTodos()[indice - 1];
@@ -75,10 +76,12 @@ namespace Vista
                 }
                 iniciarForm();
                 lblVentaId.Text = v.ID + "";
+                lblNow.Text = v.FECHA;
                 dgvDetalle.DataSource = listaDetalles;
                 dgvDetalle.Columns[0].Visible = false;
                 dgvDetalle.Columns[1].Visible = false;
                 toolStripButton1.Visible = false;
+                this.Text = "Modificar Detalles";
             }
 
         }
@@ -92,19 +95,21 @@ namespace Vista
         {
             try
             {
-                //poner nombre usuario
-                lblUsuario.Text = usuario;
+                if (btnReg.Text.Equals("Registrar Venta"))
+                {
+                    //poner nombre usuario
+                    lblUsuario.Text = usuario;
 
-                //poner fecha y hora de una vez
-                lblNow.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm");
+                    //poner fecha y hora de una vez
+                    lblNow.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm");
 
-                //id venta
-                lblVentaId.Text = (venta.getMax() + 1) + "";
-
+                    //id venta
+                    lblVentaId.Text = (venta.getMax() + 1) + "";
+                }
                 //llenar tabla de productos
                 listaProductos = prod.getProductosNoDescontinuados();
                 dgvProductos.DataSource = listaProductos;
-
+                
                 //ocultar ID
                 dgvProductos.Columns[0].Visible = false;
                 //ocultar descontinuado
@@ -206,7 +211,7 @@ namespace Vista
         /// </summary>
         private void registrarVenta()
         {
-            if (total != 0)
+            if (total != 0 || esModificar)
             {
                 erroP.SetError(btnReg, "");
                 try
@@ -229,7 +234,7 @@ namespace Vista
                     {
                         if (esModificar)
                         {
-                            if (venta.modificarDetalles(listaDetalles, int.Parse(lblVentaId.Text)))
+                            if (venta.modificarDetalles(listaDetalles, int.Parse(lblVentaId.Text), double.Parse(lblTotal.Text.Substring(lblTotal.Text.IndexOf('$')+1))))
                             {
                                 MessageBox.Show("Modificacion Exitosa");
                             }
@@ -303,15 +308,18 @@ namespace Vista
         /// <param name="e"></param>
         private void frmVenta_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogo = MessageBox.Show("¿Desea cerrar la ventana? Perderá los cambios.",
-               "Cerrar el programa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogo == DialogResult.No)
+            if (btnReg.Text.Equals("Registrar Venta"))
             {
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = false;
+                DialogResult dialogo = MessageBox.Show("¿Desea cerrar la ventana? Perderá los cambios.",
+                   "Cerrar el programa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogo == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
             }
         }
 
@@ -326,7 +334,7 @@ namespace Vista
                 registrarVenta();
             }else if (btnReg.Text.Equals("Modificar Venta"))
             {
-
+                registrarVenta();
             }
         }
 
@@ -423,9 +431,6 @@ namespace Vista
         private void dgvDetalle_DoubleClick(object sender, EventArgs e)
         {
             IDDetalleSeleccionado = dgvDetalle.CurrentCell.RowIndex;
-            //CALCULO DE TOTAL
-            total -= listaDetalles[IDDetalleSeleccionado].SUBTOTAL;
-            lblTotal.Text = "$" + total;
             if (esModificar)
             {
                 venta.eliminarDetalle(listaDetalles[IDDetalleSeleccionado]);
