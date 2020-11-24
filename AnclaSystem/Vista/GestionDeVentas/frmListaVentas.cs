@@ -18,13 +18,17 @@ namespace Vista.GestionDeVentas
         daoVentas ventas;
         daoUsuario usuarios;
         int IDSeleccionado;
-
+        List<Usuario> listaUsuarios;
+        List<Ventas> listaVentas;
         public frmListaVentas()
         {
-            ventas = new daoVentas();
             InitializeComponent();
+            ventas = new daoVentas();
+            usuarios = new daoUsuario();
+            listaUsuarios = usuarios.buscarTodos();
             actualizarTabla();
-
+            dtpFecha.MaxDate = DateTime.Now;
+            cbCajero.SelectedIndex = 0;
         }
 
 
@@ -40,36 +44,74 @@ namespace Vista.GestionDeVentas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmVenta modificar = new frmVenta("modificar", ventas.obtenerTodos()[IDSeleccionado].ID);
+            frmVenta modificar = new frmVenta("modificar", listaVentas[IDSeleccionado].ID);
             modificar.Show();
-            actualizarTabla();
+            listaVentas = ventas.obtenerTodos();
+            dgvVentas.DataSource = null;
+            dgvVentas.DataSource = listaVentas;
+            dgvVentas.Columns[0].HeaderText = "No. VENTA";
+            dgvVentas.Columns[3].Visible = false;
         }
 
         private void btnVerDetalles_Click(object sender, EventArgs e)
         {
-            frmVenta detalle = new frmVenta("detalles", ventas.obtenerTodos()[IDSeleccionado].ID);
+            frmVenta detalle = new frmVenta("detalles", listaVentas[IDSeleccionado].ID);
             detalle.Show();
         }
 
         public void actualizarTabla()
         {
+            listaVentas= ventas.obtenerTodos();
             dgvVentas.DataSource = null;
-            dgvVentas.DataSource = ventas.obtenerTodos();
+            dgvVentas.DataSource = listaVentas;
             dgvVentas.Columns[0].HeaderText = "No. VENTA";
             dgvVentas.Columns[3].Visible = false;
-            cbCajero.DataSource = null;
-            //cbCajero.DataSource = usuarios.buscarTodos();
+            Usuario aux = new Usuario();
+            aux.nombre = "---TODOS---";
+            listaUsuarios.Insert(0, aux);
+            cbCajero.DataSource = listaUsuarios;
+            cbCajero.ValueMember = "nombre";
         }
 
         private void cbCajero_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbCajero.SelectedIndex >= 0)
+            if (((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).nombre.Equals("---TODOS---"))
             {
-                ventas.obtenerTodos(((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).id);
+                listaVentas= ventas.obtenerTodos();
+                dgvVentas.DataSource = null;
+                dgvVentas.DataSource = listaVentas;
+                dgvVentas.Columns[0].HeaderText = "No. VENTA";
+                dgvVentas.Columns[3].Visible = false;
             }
             else
             {
-                actualizarTabla();
+                listaVentas= ventas.obtenerTodos(((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).id);
+                dgvVentas.DataSource = null;
+                dgvVentas.DataSource = listaVentas;
+                dgvVentas.Columns[0].HeaderText = "No. VENTA";
+                dgvVentas.Columns[3].Visible = false;
+            }
+        }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            if (((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).nombre.Equals("---TODOS---"))
+            {
+
+                listaVentas = ventas.obtenerTodos(dtpFecha.Value.ToString("yyyy-MM-dd"));
+                dgvVentas.DataSource = null;
+                dgvVentas.DataSource = listaVentas;
+                dgvVentas.Columns[0].HeaderText = "No. VENTA";
+                dgvVentas.Columns[3].Visible = false;
+            }
+            else
+            {
+                int ID_CAJ = ((Usuario)(cbCajero.Items[cbCajero.SelectedIndex])).id;
+                listaVentas = ventas.obtenerTodos(dtpFecha.Value.ToString("yyyy-MM-dd"),ID_CAJ);
+                dgvVentas.DataSource = null;
+                dgvVentas.DataSource = listaVentas;
+                dgvVentas.Columns[0].HeaderText = "No. VENTA";
+                dgvVentas.Columns[3].Visible = false;
             }
         }
     }
