@@ -267,6 +267,7 @@
             this.gestionarUsuariosToolStripMenuItem.Name = "gestionarUsuariosToolStripMenuItem";
             this.gestionarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionarUsuariosToolStripMenuItem.Text = "Gestionar usuarios...";
+            this.gestionarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.gestionarUsuariosToolStripMenuItem_Click);
             // 
             // frmMenu
             // 
