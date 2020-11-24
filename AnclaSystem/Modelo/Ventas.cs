@@ -13,6 +13,8 @@ namespace Modelo
         public String FECHA{ get; set; }
         public int ID_CAJERO { get; set; }
 
+        public String NOMBRE_CAJERO { get; set; }
+
         public Ventas() { }
 
         public Ventas(int iD, double tOTAL, string fECHA, int iD_CAJERO)

@@ -22,7 +22,7 @@ namespace Vista.MenuPrincipal
         {
             if (Properties.Settings.Default.cajaAbierta)
             {
-                frmVenta frm = new frmVenta();
+                frmVenta frm = new frmVenta("Agregar", -1);
                 frm.Show();
             }
             else {
