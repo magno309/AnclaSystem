@@ -11,24 +11,85 @@ namespace Datos
     public class daoIngredientes
     {
 
+        public bool agregar(Ingrediente ingrediente)
+        {
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "Insert into INVENTARIO (NOMBRE, UNIDAD, STOCK, DESCONTINUADO) values (@NOMBRE, @UNIDAD, @STOCK, @DESCONTINUADO);";
+                MySqlCommand comando = new MySqlCommand(query);
+                comando.Parameters.AddWithValue("NOMBRE", ingrediente.Nombre);
+                comando.Parameters.AddWithValue("UNIDAD", ingrediente.Unidad);
+                comando.Parameters.AddWithValue("STOCK", ingrediente.Stock);
+                comando.Parameters.AddWithValue("DESCONTINUADO", ingrediente.Descontinuado);
+                return cn.ejecutarSentencia(comando);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
+        public bool descontinuar(int idIngregiente)
+        {
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "Update INVENTARIO set DESCONTINUADO = 0 where ID = @ID_INGREDIENTE;";
+                MySqlCommand comando = new MySqlCommand(query);
+                comando.Parameters.AddWithValue("ID_INGREDIENTE", idIngregiente);
+                return cn.ejecutarSentencia(comando);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool actualizar(Ingrediente ingrediente)
+        {
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "Update INVENTARIO set NOMBRE = @NOMBRE, UNIDAD = @UNIDAD, STOCK = @STOCK, DESCONTINUADO = @DESCONTINUADO where ID = @ID_INGREDIENTE;";
+                MySqlCommand comando = new MySqlCommand(query);
+                comando.Parameters.AddWithValue("ID_INGREDIENTE", ingrediente.IdIngrediente);
+                comando.Parameters.AddWithValue("NOMBRE", ingrediente.Nombre);
+                comando.Parameters.AddWithValue("UNIDAD", ingrediente.Unidad);
+                comando.Parameters.AddWithValue("STOCK", ingrediente.Stock);
+                comando.Parameters.AddWithValue("DESCONTINUADO", ingrediente.Descontinuado);
+                return cn.ejecutarSentencia(comando);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public List<Ingrediente> obtenerTodos() {
             List<Ingrediente> listaIngredientes = new List<Ingrediente>();
             Conexion cn = new Conexion();
-            string query = "SELECT * FROM INVENTARIO WHERE DESCONTINUADO = 0;";
-            foreach (List<object> fila in cn.ejecutarConsulta(query)) {
-                listaIngredientes.Add(
-                        new Ingrediente(
-                                int.Parse(fila[0].ToString()),
-                                fila[1].ToString(),
-                                fila[2].ToString(),
-                                int.Parse(fila[3].ToString()),
-                                bool.Parse(fila[4].ToString())
-                            )
-                    );
+            try
+            {
+                string query = "Select * from INVENTARIO where DESCONTINUADO = 0;";
+                foreach (List<object> fila in cn.ejecutarConsulta(query))
+                {
+                    listaIngredientes.Add(
+                            new Ingrediente(
+                                    int.Parse(fila[0].ToString()),
+                                    fila[1].ToString(),
+                                    fila[2].ToString(),
+                                    int.Parse(fila[3].ToString()),
+                                    bool.Parse(fila[4].ToString())
+                                )
+                        );
+                }
+                return listaIngredientes;
             }
-            return listaIngredientes;
+            catch (Exception e)
+            {
+                throw e;
+            }                
         }
 
     }
