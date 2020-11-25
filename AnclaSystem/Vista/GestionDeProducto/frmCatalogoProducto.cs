@@ -42,6 +42,7 @@ namespace Vista.GestionDeProducto
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+
             Productos seleccionado = new Productos(
                     (int)dgvProductos.SelectedRows[0].Cells[0].Value,
                     (string)dgvProductos.SelectedRows[0].Cells[1].Value,
@@ -52,9 +53,34 @@ namespace Vista.GestionDeProducto
             frm.ShowDialog();
         }
 
-        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
+            if (dgvProductos.SelectedRows.Count > 0) {
+                int index = dgvProductos.SelectedRows[0].Index;
+                DialogResult res = MessageBox.Show(this, "¿Deseea eliminar el producto " + (string)dgvProductos.Rows[index].Cells[1].Value + "?",
+                    "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes) {
+                    if (new daoProducto().EliminarProducto((int)dgvProductos.Rows[index].Cells[0].Value))
+                    {
+                        MessageBox.Show(this, "Producto eliminado correctamente!", "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else {
+                        MessageBox.Show(this, "Error al eliminar producto!", "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            listaProductos = new daoProducto().getProductosNoDescontinuados(txtBuscar.Text + "%");
+            dgvProductos.DataSource = listaProductos;
+            dgvProductos.Columns[0].Visible = false;
+            dgvProductos.Columns[3].Visible = false;
+            dgvProductos.Columns[1].HeaderText = "PRODUCTO";
+            dgvProductos.Columns[2].HeaderText = "PRECIO";
+            dgvProductos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvProductos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

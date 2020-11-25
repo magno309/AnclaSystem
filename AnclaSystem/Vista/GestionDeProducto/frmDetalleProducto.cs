@@ -75,7 +75,6 @@ namespace Vista.GestionDeProducto
                                     false
                                 );
                             Dictionary<int, int> listaIngredientes = new Dictionary<int, int>();
-
                             foreach (DataGridViewRow row in dgvIngredientes.Rows)
                             {
                                 listaIngredientes.Add(int.Parse(row.Cells[0].Value.ToString()), int.Parse(row.Cells[1].Value.ToString()));
@@ -96,6 +95,37 @@ namespace Vista.GestionDeProducto
                         }
                     }
                     else {
+                        MessageBox.Show(this, "El producto debe tener un nombre!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    break;
+                case 2:
+                    if (!txtNombre.Text.Equals(""))
+                    {
+                        if (dgvIngredientes.Rows.Count >= 0)
+                        {
+                            actualizable.nombre = txtNombre.Text;
+                            actualizable.precio = double.Parse(txtPrecio.Text);
+                            Dictionary<int, int> listaIngredientes = new Dictionary<int, int>();
+                            foreach (DataGridViewRow row in dgvIngredientes.Rows)
+                            {
+                                listaIngredientes.Add(int.Parse(row.Cells[0].Value.ToString()), int.Parse(row.Cells[1].Value.ToString()));
+                            }
+                            if (new daoProducto().ModificarProducto(actualizable, listaIngredientes))
+                            {
+                                MessageBox.Show(this, "Producto modificado correctamente!", "Producto modificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show(this, "Error al agregar producto!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "El producto debe tener al menos un ingrediente!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
                         MessageBox.Show(this, "El producto debe tener un nombre!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;

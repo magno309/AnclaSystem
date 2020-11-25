@@ -68,6 +68,7 @@ namespace Datos {
         private bool CloseConnection() {
             try {
                 connection.Close();
+                connection.Dispose();
                 return true;
             }
             catch (MySqlException ex) {
