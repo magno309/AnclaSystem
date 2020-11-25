@@ -50,16 +50,16 @@ namespace Datos
                 insertarProducto.Connection = cn;
                 insertarProducto.Transaction = transaction;
                 insertarProducto.CommandText = "INSERT INTO PRODUCTOS (NOMBRE, PRECIO, DESCONTINUADO) VALUES " +
-                    "(@Nombre, @Precio, @Descontinuado);";
+                    "(@Nombre, @Precio, @Descontinuado);SELECT * FROM PRODUCTOS WHERE ID = (LAST_INSERT_ID())";
                 insertarProducto.Parameters.AddWithValue("@Nombre", nuevo.nombre);
                 insertarProducto.Parameters.AddWithValue("@Precio", nuevo.precio);
-                insertarProducto.Parameters.AddWithValue("@Descontinuado", nuevo.descontinuado);
+                insertarProducto.Parameters.AddWithValue("@Descontinuado", false);
                 var idProducto = insertarProducto.ExecuteScalar();
                 foreach (var map in listaIngredientes) {
                     MySqlCommand insertarDetalle = new MySqlCommand();
                     insertarDetalle.Connection = cn;
                     insertarDetalle.Transaction = transaction;
-                    insertarDetalle.CommandText = "INSERT INTO DETALLES_PRODUCTO VALUES " +
+                    insertarDetalle.CommandText = "INSERT INTO DETALLE_PRODUCTOS VALUES " +
                         "(@IdProducto, @IdIngrediente, @Cantidad);";
                     insertarDetalle.Parameters.AddWithValue("@IdProducto", idProducto);
                     insertarDetalle.Parameters.AddWithValue("@IdIngrediente", map.Key);
