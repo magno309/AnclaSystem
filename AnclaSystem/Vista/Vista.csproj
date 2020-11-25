@@ -121,12 +121,6 @@
     <Compile Include="GestionDeProducto\frmCatalogoProducto.Designer.cs">
       <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionDeProducto\frmIngredienteProducto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GestionDeProducto\frmIngredienteProducto.Designer.cs">
-      <DependentUpon>frmIngredienteProducto.cs</DependentUpon>
-    </Compile>
     <Compile Include="GestionDeUsuarios\frmDirectorioUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,9 +188,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeProducto\frmCatalogoProducto.resx">
       <DependentUpon>frmCatalogoProducto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GestionDeProducto\frmIngredienteProducto.resx">
-      <DependentUpon>frmIngredienteProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionDeUsuarios\frmDirectorioUsuarios.resx">
       <DependentUpon>frmDirectorioUsuarios.cs</DependentUpon>

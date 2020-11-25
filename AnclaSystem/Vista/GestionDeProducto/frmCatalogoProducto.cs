@@ -30,12 +30,31 @@ namespace Vista.GestionDeProducto
             dgvProductos.Columns[3].Visible = false;
             dgvProductos.Columns[1].HeaderText = "PRODUCTO";
             dgvProductos.Columns[2].HeaderText = "PRECIO";
+            dgvProductos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvProductos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmDetalleProducto frm = new frmDetalleProducto(1);
             frm.ShowDialog();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Productos seleccionado = new Productos(
+                    (int)dgvProductos.SelectedRows[0].Cells[0].Value,
+                    (string)dgvProductos.SelectedRows[0].Cells[1].Value,
+                    (double)dgvProductos.SelectedRows[0].Cells[2].Value,
+                    (bool)dgvProductos.SelectedRows[0].Cells[3].Value
+                );
+            frmDetalleProducto frm = new frmDetalleProducto(2, seleccionado);
+            frm.ShowDialog();
+        }
+
+        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

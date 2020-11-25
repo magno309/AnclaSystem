@@ -16,10 +16,12 @@ namespace Vista.GestionDeProducto
     {
 
         int modo;
+        Productos actualizable;
         List<Ingrediente> listaIngredientes;
         public frmDetalleProducto(int modo)
         {
             InitializeComponent();
+            this.modo = modo;
             listaIngredientes = new daoIngredientes().obtenerTodos();
             switch (modo) {
                 case 1:
@@ -28,9 +30,34 @@ namespace Vista.GestionDeProducto
                     colIngrediente.ValueMember = "IdIngrediente";
                     this.Text = "Agregar producto";
                     btnAceptar.Text = "Agregar";
-                    chbDescontinuado.Visible = false;
-                    this.modo = modo;
                     break;
+            }
+        }
+
+
+        public frmDetalleProducto(int modo, Productos mod)
+        {
+            InitializeComponent();
+            this.modo = modo;
+            listaIngredientes = new daoIngredientes().obtenerTodos();
+            colIngrediente.DataSource = listaIngredientes;
+            colIngrediente.DisplayMember = "Nombre";
+            colIngrediente.ValueMember = "IdIngrediente";
+            this.Text = "Modificar producto - ID:" + mod.ID;
+            btnAceptar.Text = "Modificar";
+            this.actualizable = mod;
+            txtNombre.Text = mod.nombre;
+            txtPrecio.Text = mod.precio + "";
+            llenarTablaIngredientes();
+        }
+
+        private void llenarTablaIngredientes()
+        {
+            Dictionary<Ingrediente, int> listaIngredientes = new daoIngredientes().obtenerTodosPorProducto(actualizable.ID);
+            for (int i = 0; i < listaIngredientes.Count; i++) {
+                dgvIngredientes.Rows.Add();
+                dgvIngredientes.Rows[i].Cells[0].Value = listaIngredientes.Keys.ElementAt(i).IdIngrediente;
+                dgvIngredientes.Rows[i].Cells[1].Value = listaIngredientes.Values.ElementAt(i);
             }
         }
 
@@ -56,6 +83,9 @@ namespace Vista.GestionDeProducto
                             if (new daoProducto().AgregarProducto(nuevo, listaIngredientes))
                             {
                                 MessageBox.Show(this, "Producto agregado correctamente!", "Producto agregado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                txtNombre.Text = "";
+                                txtPrecio.Text = "";
+                                dgvIngredientes.Rows.Clear();
                             }
                             else {
                                 MessageBox.Show(this, "Error al agregar producto!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -88,11 +118,6 @@ namespace Vista.GestionDeProducto
         private void btnAgregarIngrediente_Click_1(object sender, EventArgs e)
         {
             dgvIngredientes.Rows.Add();
-        }
-
-        private void dgvIngredientes_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        {
-            
         }
 
         private void btnEliminarIngrediente_Click(object sender, EventArgs e)

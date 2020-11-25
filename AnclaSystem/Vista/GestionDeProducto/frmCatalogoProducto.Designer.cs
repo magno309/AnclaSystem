@@ -32,7 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnModificar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -63,7 +63,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAgregar,
-            this.toolStripButton2,
+            this.btnModificar,
             this.toolStripButton3,
             this.toolStripSeparator1,
             this.toolStripTextBox1,
@@ -85,13 +85,14 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // toolStripButton2
+            // btnModificar
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(78, 22);
-            this.toolStripButton2.Text = "Modificar";
+            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
+            this.btnModificar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(78, 22);
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // toolStripButton3
             // 
@@ -135,14 +136,20 @@
             // 
             // dgvProductos
             // 
+            this.dgvProductos.AllowUserToAddRows = false;
+            this.dgvProductos.AllowUserToDeleteRows = false;
+            this.dgvProductos.AllowUserToResizeRows = false;
             this.dgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Location = new System.Drawing.Point(6, 50);
+            this.dgvProductos.MultiSelect = false;
             this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(630, 350);
             this.dgvProductos.TabIndex = 0;
+            this.dgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellClick);
             // 
             // frmCatalogoProducto
             // 
@@ -170,7 +177,7 @@
         private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnAgregar;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnModificar;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;

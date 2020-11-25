@@ -30,20 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalleProducto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chbDescontinuado = new System.Windows.Forms.CheckBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
+            this.colIngrediente = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAgregarIngrediente = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEliminarIngrediente = new System.Windows.Forms.ToolStripButton();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnAgregarIngrediente = new System.Windows.Forms.ToolStripButton();
-            this.colIngrediente = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
@@ -54,27 +53,16 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.chbDescontinuado);
             this.groupBox1.Controls.Add(this.txtPrecio);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(387, 134);
+            this.groupBox1.Size = new System.Drawing.Size(387, 94);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información del producto";
-            // 
-            // chbDescontinuado
-            // 
-            this.chbDescontinuado.AutoSize = true;
-            this.chbDescontinuado.Location = new System.Drawing.Point(82, 88);
-            this.chbDescontinuado.Name = "chbDescontinuado";
-            this.chbDescontinuado.Size = new System.Drawing.Size(136, 24);
-            this.chbDescontinuado.TabIndex = 4;
-            this.chbDescontinuado.Text = "Descontinuado";
-            this.chbDescontinuado.UseVisualStyleBackColor = true;
             // 
             // txtPrecio
             // 
@@ -120,9 +108,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.dgvIngredientes);
             this.groupBox2.Controls.Add(this.toolStrip1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 152);
+            this.groupBox2.Location = new System.Drawing.Point(12, 112);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(387, 219);
+            this.groupBox2.Size = new System.Drawing.Size(387, 259);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lista de ingredientes";
@@ -131,6 +119,8 @@
             // 
             this.dgvIngredientes.AllowUserToAddRows = false;
             this.dgvIngredientes.AllowUserToDeleteRows = false;
+            this.dgvIngredientes.AllowUserToResizeColumns = false;
+            this.dgvIngredientes.AllowUserToResizeRows = false;
             this.dgvIngredientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -139,10 +129,25 @@
             this.colIngrediente,
             this.colCantidad});
             this.dgvIngredientes.Location = new System.Drawing.Point(11, 50);
+            this.dgvIngredientes.MultiSelect = false;
             this.dgvIngredientes.Name = "dgvIngredientes";
-            this.dgvIngredientes.Size = new System.Drawing.Size(370, 163);
+            this.dgvIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvIngredientes.Size = new System.Drawing.Size(370, 203);
             this.dgvIngredientes.TabIndex = 1;
-            this.dgvIngredientes.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvIngredientes_DefaultValuesNeeded);
+            // 
+            // colIngrediente
+            // 
+            this.colIngrediente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colIngrediente.HeaderText = "Ingrediente";
+            this.colIngrediente.Name = "colIngrediente";
+            this.colIngrediente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colCantidad
+            // 
+            this.colCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCantidad.HeaderText = "Cantidad";
+            this.colCantidad.Name = "colCantidad";
+            this.colCantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // toolStrip1
             // 
@@ -155,6 +160,15 @@
             this.toolStrip1.Size = new System.Drawing.Size(381, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnAgregarIngrediente
+            // 
+            this.btnAgregarIngrediente.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarIngrediente.Image")));
+            this.btnAgregarIngrediente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgregarIngrediente.Name = "btnAgregarIngrediente";
+            this.btnAgregarIngrediente.Size = new System.Drawing.Size(132, 22);
+            this.btnAgregarIngrediente.Text = "Agregar ingrediente";
+            this.btnAgregarIngrediente.Click += new System.EventHandler(this.btnAgregarIngrediente_Click_1);
             // 
             // toolStripSeparator1
             // 
@@ -181,29 +195,6 @@
             this.btnAceptar.Text = "Agregar producto";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnAgregarIngrediente
-            // 
-            this.btnAgregarIngrediente.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarIngrediente.Image")));
-            this.btnAgregarIngrediente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgregarIngrediente.Name = "btnAgregarIngrediente";
-            this.btnAgregarIngrediente.Size = new System.Drawing.Size(132, 22);
-            this.btnAgregarIngrediente.Text = "Agregar ingrediente";
-            this.btnAgregarIngrediente.Click += new System.EventHandler(this.btnAgregarIngrediente_Click_1);
-            // 
-            // colIngrediente
-            // 
-            this.colIngrediente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colIngrediente.HeaderText = "Ingrediente";
-            this.colIngrediente.Name = "colIngrediente";
-            this.colIngrediente.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // colCantidad
-            // 
-            this.colCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCantidad.HeaderText = "Cantidad";
-            this.colCantidad.Name = "colCantidad";
-            this.colCantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // frmDetalleProducto
             // 
@@ -232,7 +223,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chbDescontinuado;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNombre;
