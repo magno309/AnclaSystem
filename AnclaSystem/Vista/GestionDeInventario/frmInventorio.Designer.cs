@@ -28,38 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventario));
             this.gbBusqueda = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbUnidad = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnModificar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnLimpiar = new System.Windows.Forms.ToolStripButton();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbListaProveedores = new System.Windows.Forms.GroupBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
-            this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbUnidad = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numericStock = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtStock = new System.Windows.Forms.TextBox();
             this.gbBusqueda.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.gbListaProveedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // gbBusqueda
             // 
             this.gbBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbBusqueda.Controls.Add(this.numericStock);
+            this.gbBusqueda.Controls.Add(this.txtStock);
             this.gbBusqueda.Controls.Add(this.label3);
             this.gbBusqueda.Controls.Add(this.cmbUnidad);
             this.gbBusqueda.Controls.Add(this.label2);
@@ -72,6 +71,25 @@
             this.gbBusqueda.TabIndex = 0;
             this.gbBusqueda.TabStop = false;
             this.gbBusqueda.Text = "Datos ingredientes";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(346, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 20);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Stock:";
+            // 
+            // cmbUnidad
+            // 
+            this.cmbUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnidad.FormattingEnabled = true;
+            this.cmbUnidad.Location = new System.Drawing.Point(84, 80);
+            this.cmbUnidad.Name = "cmbUnidad";
+            this.cmbUnidad.Size = new System.Drawing.Size(237, 28);
+            this.cmbUnidad.TabIndex = 7;
+            this.cmbUnidad.SelectedIndexChanged += new System.EventHandler(this.cmbUnidad_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -97,6 +115,15 @@
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(62, 22);
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // btnAgregar
             // 
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
@@ -104,6 +131,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(69, 22);
             this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
@@ -112,6 +140,7 @@
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(78, 22);
             this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -120,6 +149,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(70, 22);
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -133,14 +163,7 @@
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(67, 22);
             this.btnLimpiar.Text = "Limpiar";
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(62, 22);
-            this.btnBuscar.Text = "Buscar";
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // txtNombre
             // 
@@ -148,6 +171,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(237, 26);
             this.txtNombre.TabIndex = 4;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label1
             // 
@@ -178,63 +202,29 @@
             this.dgvIngredientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvIngredientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngredientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colNombre,
-            this.colUnidad,
-            this.colStock});
             this.dgvIngredientes.Location = new System.Drawing.Point(6, 25);
+            this.dgvIngredientes.MultiSelect = false;
             this.dgvIngredientes.Name = "dgvIngredientes";
             this.dgvIngredientes.ReadOnly = true;
+            this.dgvIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIngredientes.Size = new System.Drawing.Size(606, 279);
             this.dgvIngredientes.TabIndex = 1;
+            this.dgvIngredientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellClick);
             // 
-            // colNombre
+            // errorProvider
             // 
-            this.colNombre.HeaderText = "Nombre";
-            this.colNombre.Name = "colNombre";
-            this.colNombre.ReadOnly = true;
+            this.errorProvider.ContainerControl = this;
             // 
-            // colUnidad
+            // txtStock
             // 
-            this.colUnidad.HeaderText = "Unidad";
-            this.colUnidad.Name = "colUnidad";
-            this.colUnidad.ReadOnly = true;
-            // 
-            // colStock
-            // 
-            this.colStock.HeaderText = "Stock";
-            this.colStock.Name = "colStock";
-            this.colStock.ReadOnly = true;
-            // 
-            // cmbUnidad
-            // 
-            this.cmbUnidad.FormattingEnabled = true;
-            this.cmbUnidad.Location = new System.Drawing.Point(84, 80);
-            this.cmbUnidad.Name = "cmbUnidad";
-            this.cmbUnidad.Size = new System.Drawing.Size(237, 28);
-            this.cmbUnidad.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(327, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 20);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Stock:";
-            // 
-            // numericStock
-            // 
-            this.numericStock.Location = new System.Drawing.Point(386, 48);
-            this.numericStock.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericStock.Name = "numericStock";
-            this.numericStock.Size = new System.Drawing.Size(120, 26);
-            this.numericStock.TabIndex = 9;
+            this.txtStock.Location = new System.Drawing.Point(406, 48);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(101, 26);
+            this.txtStock.TabIndex = 9;
+            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
+            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // frmInventario
             // 
@@ -247,6 +237,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(420, 496);
             this.Name = "frmInventario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de inventario";
             this.gbBusqueda.ResumeLayout(false);
             this.gbBusqueda.PerformLayout();
@@ -254,7 +245,7 @@
             this.toolStrip2.PerformLayout();
             this.gbListaProveedores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,9 +257,6 @@
         private System.Windows.Forms.DataGridView dgvIngredientes;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colStock;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton btnAgregar;
         private System.Windows.Forms.ToolStripButton btnModificar;
@@ -278,7 +266,8 @@
         private System.Windows.Forms.ToolStripButton btnBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbUnidad;
-        private System.Windows.Forms.NumericUpDown numericStock;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox txtStock;
     }
 }

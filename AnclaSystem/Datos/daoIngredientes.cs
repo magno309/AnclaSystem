@@ -16,7 +16,7 @@ namespace Datos
             Conexion cn = new Conexion();
             try
             {
-                string query = "Insert into INVENTARIO (NOMBRE, UNIDAD, STOCK, DESCONTINUADO) values (@NOMBRE, @UNIDAD, @STOCK, @DESCONTINUADO);";
+                string query = "Insert into INVENTARIO (NOMBRE, UNIDAD, STOCK, DESCONTINUADO) values (upper(@NOMBRE), @UNIDAD, @STOCK, @DESCONTINUADO);";
                 MySqlCommand comando = new MySqlCommand(query);
                 comando.Parameters.AddWithValue("NOMBRE", ingrediente.Nombre);
                 comando.Parameters.AddWithValue("UNIDAD", ingrediente.Unidad);
@@ -35,7 +35,7 @@ namespace Datos
             Conexion cn = new Conexion();
             try
             {
-                string query = "Update INVENTARIO set DESCONTINUADO = 0 where ID = @ID_INGREDIENTE;";
+                string query = "Update INVENTARIO set DESCONTINUADO = 1 where ID = @ID_INGREDIENTE;";
                 MySqlCommand comando = new MySqlCommand(query);
                 comando.Parameters.AddWithValue("ID_INGREDIENTE", idIngregiente);
                 return cn.ejecutarSentencia(comando);
@@ -51,7 +51,7 @@ namespace Datos
             Conexion cn = new Conexion();
             try
             {
-                string query = "Update INVENTARIO set NOMBRE = @NOMBRE, UNIDAD = @UNIDAD, STOCK = @STOCK, DESCONTINUADO = @DESCONTINUADO where ID = @ID_INGREDIENTE;";
+                string query = "Update INVENTARIO set NOMBRE = upper(@NOMBRE), UNIDAD = @UNIDAD, STOCK = @STOCK, DESCONTINUADO = @DESCONTINUADO where ID = @ID_INGREDIENTE;";
                 MySqlCommand comando = new MySqlCommand(query);
                 comando.Parameters.AddWithValue("ID_INGREDIENTE", ingrediente.IdIngrediente);
                 comando.Parameters.AddWithValue("NOMBRE", ingrediente.Nombre);
@@ -90,6 +90,53 @@ namespace Datos
             {
                 throw e;
             }                
+        }
+
+        public List<Ingrediente> buscarPatron(String nombre, String unidad, int stock)
+        {
+            List<Ingrediente> listaIngredientes = new List<Ingrediente>();
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "select * from INVENTARIO where (lower(NOMBRE) LIKE lower(@NOMBRE) or UNIDAD like @UNIDAD or STOCK like @STOCK) and DESCONTINUADO = 0;";
+                MySqlCommand comando = new MySqlCommand(query);
+                comando.Parameters.AddWithValue("@NOMBRE", nombre.Equals("")? "%\"\"%" : "%"+nombre+"%");
+                comando.Parameters.AddWithValue("@UNIDAD", unidad.Equals("")? "%\"\"%" : "%"+unidad+"%");
+                comando.Parameters.AddWithValue("@STOCK", stock==-1? "%\"\"%" : "%"+stock+"%");
+                
+                foreach (List<object> fila in cn.ejecutarConsulta(comando))
+                {
+                    Ingrediente ingrediente = new Ingrediente();
+                    ingrediente.IdIngrediente = int.Parse(fila[0].ToString());
+                    ingrediente.Nombre = fila[1].ToString();
+                    ingrediente.Unidad = fila[2].ToString();
+                    ingrediente.Stock = int.Parse(fila[3].ToString());
+                    ingrediente.Descontinuado = bool.Parse(fila[4].ToString());
+                    listaIngredientes.Add(ingrediente);
+                }
+
+                return listaIngredientes;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool nombreDuplicado(string nombre)
+        {
+            Conexion cn = new Conexion();
+            try
+            {
+                string query = "select * from INVENTARIO where lower(NOMBRE) LIKE lower(@NOMBRE)and DESCONTINUADO = 0;";
+                MySqlCommand comando = new MySqlCommand(query);
+                comando.Parameters.AddWithValue("@NOMBRE", nombre);                
+                return cn.ejecutarConsulta(comando).Count>0;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
     }
