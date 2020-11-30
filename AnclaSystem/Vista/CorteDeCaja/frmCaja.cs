@@ -46,7 +46,7 @@ namespace Vista
         private void btnAbrirCaja_Click(object sender, EventArgs e)
         {
             errorProviderEfectivo.SetError(txtEfectivo, "");
-            if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoIngresado))
+            if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoIngresado) && efectivoIngresado>=0)
             {                
                 if (cajaAbierta == false)
                 {
@@ -76,7 +76,7 @@ namespace Vista
             }
             else
             {
-                errorProviderEfectivo.SetError(txtEfectivo, "Ingresa una cantidad correcta");
+                errorProviderEfectivo.SetError(txtEfectivo, "Ingresa una cantidad mayor o igual a 0");
             }
         }
 
@@ -115,6 +115,17 @@ namespace Vista
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtEfectivo_TextChanged(object sender, EventArgs e)
+        {
+            if (!errorProviderEfectivo.GetError(txtEfectivo).Equals(""))
+            {
+                if (decimal.TryParse(txtEfectivo.Text.Trim(), out efectivoIngresado) && efectivoIngresado >= 0)
+                {
+                    errorProviderEfectivo.SetError(txtEfectivo, "");
+                }
             }
         }
     }
