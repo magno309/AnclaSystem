@@ -66,7 +66,8 @@ namespace Datos
             }
         }
 
-        public List<Ingrediente> obtenerTodos() {
+        public List<Ingrediente> obtenerTodos()
+        {
             List<Ingrediente> listaIngredientes = new List<Ingrediente>();
             Conexion cn = new Conexion();
             try
@@ -89,7 +90,7 @@ namespace Datos
             catch (Exception e)
             {
                 throw e;
-            }                
+            }
         }
 
         public List<Ingrediente> buscarPatron(String nombre, String unidad, int stock)
@@ -141,3 +142,4 @@ namespace Datos
 
     }
 }
+
