@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vista.GestionDeUsuarios;
 
 namespace Vista.MenuPrincipal
 {
@@ -21,7 +22,7 @@ namespace Vista.MenuPrincipal
         {
             if (Properties.Settings.Default.cajaAbierta)
             {
-                frmVenta frm = new frmVenta();
+                frmVenta frm = new frmVenta("Agregar", -1);
                 frm.Show();
             }
             else {
@@ -99,6 +100,11 @@ namespace Vista.MenuPrincipal
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void gestionarUsuariosToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmDirectorioUsuarios form = new frmDirectorioUsuarios();
+            form.Show();
         }
     }
 }

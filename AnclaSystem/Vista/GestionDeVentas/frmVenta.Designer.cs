@@ -194,6 +194,7 @@
             this.dgvDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalle.Size = new System.Drawing.Size(542, 257);
             this.dgvDetalle.TabIndex = 0;
+            this.dgvDetalle.DoubleClick += new System.EventHandler(this.dgvDetalle_DoubleClick);
             // 
             // toolStrip1
             // 

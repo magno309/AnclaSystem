@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListaVentas));
             this.gbListaProveedores = new System.Windows.Forms.GroupBox();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
@@ -36,15 +36,12 @@
             this.btnModificar = new System.Windows.Forms.ToolStripButton();
             this.btnVerDetalles = new System.Windows.Forms.ToolStripButton();
             this.gbBusqueda = new System.Windows.Forms.GroupBox();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbCajero = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.colNoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCajero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbCajero = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.gbListaProveedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.toolStrip2.SuspendLayout();
@@ -73,24 +70,22 @@
             this.dgvVentas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colNoVenta,
-            this.colFecha,
-            this.colCajero});
             this.dgvVentas.Location = new System.Drawing.Point(6, 50);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.ReadOnly = true;
             this.dgvVentas.Size = new System.Drawing.Size(498, 284);
             this.dgvVentas.TabIndex = 1;
+            this.dgvVentas.Click += new System.EventHandler(this.dgvVentas_Click);
+            this.dgvVentas.DoubleClick += new System.EventHandler(this.dgvVentas_DoubleClick);
             // 
             // toolStrip2
             // 
@@ -110,6 +105,7 @@
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(78, 22);
             this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnVerDetalles
             // 
@@ -118,6 +114,7 @@
             this.btnVerDetalles.Name = "btnVerDetalles";
             this.btnVerDetalles.Size = new System.Drawing.Size(95, 22);
             this.btnVerDetalles.Text = "Ver detalles...";
+            this.btnVerDetalles.Click += new System.EventHandler(this.btnVerDetalles_Click);
             // 
             // gbBusqueda
             // 
@@ -134,6 +131,34 @@
             this.gbBusqueda.TabIndex = 2;
             this.gbBusqueda.TabStop = false;
             this.gbBusqueda.Text = "Filtro de búsqueda";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(294, 48);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(200, 26);
+            this.dtpFecha.TabIndex = 6;
+            this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(230, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Fecha:";
+            // 
+            // cbCajero
+            // 
+            this.cbCajero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCajero.FormattingEnabled = true;
+            this.cbCajero.Location = new System.Drawing.Point(74, 47);
+            this.cbCajero.Name = "cbCajero";
+            this.cbCajero.Size = new System.Drawing.Size(139, 28);
+            this.cbCajero.TabIndex = 4;
+            this.cbCajero.SelectedIndexChanged += new System.EventHandler(this.cbCajero_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -161,49 +186,6 @@
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(62, 22);
             this.btnBuscar.Text = "Buscar";
-            // 
-            // colNoVenta
-            // 
-            this.colNoVenta.HeaderText = "No. de venta";
-            this.colNoVenta.Name = "colNoVenta";
-            this.colNoVenta.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            this.colFecha.HeaderText = "Fecha";
-            this.colFecha.Name = "colFecha";
-            this.colFecha.ReadOnly = true;
-            // 
-            // colCajero
-            // 
-            this.colCajero.HeaderText = "Cajero";
-            this.colCajero.Name = "colCajero";
-            this.colCajero.ReadOnly = true;
-            // 
-            // cbCajero
-            // 
-            this.cbCajero.FormattingEnabled = true;
-            this.cbCajero.Location = new System.Drawing.Point(74, 47);
-            this.cbCajero.Name = "cbCajero";
-            this.cbCajero.Size = new System.Drawing.Size(139, 28);
-            this.cbCajero.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(230, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Fecha:";
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(294, 48);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 26);
-            this.dtpFecha.TabIndex = 6;
             // 
             // frmListaVentas
             // 
@@ -241,9 +223,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnBuscar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNoVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCajero;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbCajero;
