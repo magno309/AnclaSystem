@@ -140,6 +140,36 @@ namespace Datos
             }
         }
 
+        public Dictionary<Ingrediente, int> ObtenerTodosPorProducto(int idProducto) {
+            Dictionary<Ingrediente, int> listaIngredientes = new Dictionary<Ingrediente, int>();
+            Conexion cn = new Conexion();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.CommandText = "SELECT i.ID, i.NOMBRE, i.UNIDAD, i.STOCK, i.DESCONTINUADO, dp.CANTIDAD FROM INVENTARIO i JOIN DETALLE_PRODUCTOS dp " +
+                                "WHERE i.ID = dp.ID_INV AND i.DESCONTINUADO = 0 AND dp.ID_PROD = @idProducto;";
+                cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                foreach (List<object> fila in cn.ejecutarConsulta(cmd))
+                {
+                    listaIngredientes.Add(
+                            new Ingrediente(
+                                    int.Parse(fila[0].ToString()),
+                                    fila[1].ToString(),
+                                    fila[2].ToString(),
+                                    int.Parse(fila[3].ToString()),
+                                    bool.Parse(fila[4].ToString())
+                                ),
+                            int.Parse(fila[5].ToString())
+                        );
+                }
+                return listaIngredientes;
+            }
+            catch (Exception e) {
+                throw e;
+            }
+        }
+
     }
 }
 
