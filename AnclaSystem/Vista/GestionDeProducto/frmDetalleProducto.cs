@@ -53,7 +53,7 @@ namespace Vista.GestionDeProducto
 
         private void llenarTablaIngredientes()
         {
-            Dictionary<Ingrediente, int> listaIngredientes = new daoIngredientes().obtenerTodosPorProducto(actualizable.ID);
+            Dictionary<Ingrediente, int> listaIngredientes = new daoIngredientes().ObtenerTodosPorProducto(actualizable.ID);
             for (int i = 0; i < listaIngredientes.Count; i++) {
                 dgvIngredientes.Rows.Add();
                 dgvIngredientes.Rows[i].Cells[0].Value = listaIngredientes.Keys.ElementAt(i).IdIngrediente;
